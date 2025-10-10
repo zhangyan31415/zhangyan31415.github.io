@@ -76,7 +76,20 @@
   <main class="wrap">
     <section id="about">
       <h2>关于我</h2>
-      <p>专注于扭转/摩尔范德华材料与拓扑分析。此页仅作名片与入口。</p>
+      <p>专注于扭转/摩尔范德华材料与拓扑分析。此页仅作名片与入口。</p>    </section>
+
+    <section id="viewer">
+      <h2>在线演示</h2>
+      <div class="card">
+        <p class="muted">已接入临时 Quick Tunnel（0 成本）：点击下方按钮或直接在页面内预览。</p>
+        <p style="margin:8px 0 14px">
+          <a class="btn" href="https://barn-responding-christine-respect.trycloudflare.com/" target="_blank" rel="noopener">🔗 打开在线演示（新标签）</a>
+        </p>
+        <iframe id="viewer-frame" src="https://barn-responding-christine-respect.trycloudflare.com/"
+          style="width:100%;height:78vh;border:1px solid #1f2937;border-radius:12px;background:#0b1220"
+          loading="lazy" referrerpolicy="no-referrer"></iframe>
+        <p class="muted" style="margin-top:8px">若无法加载，可能是隧道已重启导致地址变化，或后端设置了 <span class="mono">X-Frame-Options</span> / <span class="mono">Content-Security-Policy: frame-ancestors</span> 禁止被嵌入。临时测试可放宽为允许来自 <span class="mono">https://zhangyan31415.github.io</span> 的嵌入。</p>
+      </div>
     </section>
 
     <section id="contact">
@@ -90,6 +103,12 @@
     <div class="wrap muted">© <span id="y"></span> Yan Zhang · Built with GitHub Pages</div>
   </footer>
 
-  <script>document.getElementById('y').textContent = new Date().getFullYear()</script>
+  <script>
+  // 仍保留 ?tunnel= 覆盖能力，便于后续更新临时地址而无需改代码
+  const q = new URLSearchParams(location.search).get('tunnel');
+  if(q){
+    try{ document.getElementById('viewer-frame').src = new URL(q).href; }catch{}
+  }
+</script>
 </body>
 </html>

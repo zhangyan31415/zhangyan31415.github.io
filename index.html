@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Yan Zhang — Moiré & vdW Materials</title>
+  <meta name="description" content="Yan Zhang (IOPCAS) — moiré/twisted vdW materials, continuum models, TAPW, topological analysis." />
+  <meta name="color-scheme" content="light dark" />
+  <style>
+    :root{
+      --bg: #0b1020;           /* 深蓝基底 */
+      --bg-soft:#0f172a;       /* 软背景 */
+      --text: #e6eaf2;         /* 正文颜色 */
+      --muted:#b9c3d6;         /* 次要文字 */
+      --card:#111827cc;        /* 卡片背景 */
+      --brand:#7dd3fc;         /* 品牌高亮 */
+      --brand-2:#60a5fa;       /* 品牌渐变2 */
+      --accent:#a78bfa;        /* 次高亮 */
+      --ring:#1f2937;          /* 边框/分隔 */
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; font: 16px/1.6 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color:var(--text); background: radial-gradient(1200px 800px at 20% -10%, #1f2937 0%, transparent 60%),
+                          radial-gradient(1000px 700px at 120% -20%, #0ea5e9 0%, transparent 45%),
+                          var(--bg);
+    }
+    .wrap{max-width:1024px; margin:0 auto; padding:32px 16px}
+    header.hero{
+      padding:72px 0 56px; position:relative; overflow:hidden;
+      background: linear-gradient(135deg, #0ea5e922 0%, #6366f122 100%);
+      border-bottom:1px solid #1f2937;
+    }
+    .brand{font-weight:800; font-size:clamp(28px, 5vw, 40px); letter-spacing:.5px}
+    .tagline{color:var(--muted); font-size:clamp(14px, 2.6vw, 18px)}
+    nav{display:flex; gap:12px; flex-wrap:wrap; margin-top:18px}
+    nav a{color:var(--text); text-decoration:none; padding:8px 12px; border:1px solid var(--ring); border-radius:999px}
+    nav a:hover{border-color:#334155; background:#0b1220}
+    .grid{display:grid; gap:16px}
+    @media (min-width:768px){ .grid.cols-2{grid-template-columns:1fr 1fr} }
+    @media (min-width:1024px){ .grid.cols-3{grid-template-columns:repeat(3, 1fr)} }
+
+    section{padding:40px 0; border-bottom:1px solid #1f2937}
+    h2{font-size:clamp(22px, 3.5vw, 28px); margin:0 0 12px}
+    p{margin:6px 0}
+
+    .card{background:var(--card); border:1px solid #1f2937; border-radius:18px; padding:18px}
+    .card h3{margin:0 0 8px; font-size:18px}
+    .card p{color:var(--muted)}
+    .btn{
+      display:inline-block; padding:10px 14px; border-radius:12px; text-decoration:none;
+      color:#06121f; background: linear-gradient(90deg, var(--brand), var(--brand-2)); font-weight:700;
+    }
+    .btn.ghost{background:transparent; color:var(--text); border:1px solid #334155}
+    .pill{color:#06121f; background:#a7f3d0; padding:4px 8px; border-radius:999px; font-size:12px; font-weight:700}
+    footer{padding:36px 0; color:var(--muted)}
+    .muted{color:var(--muted)}
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;}
+    a{color:#93c5fd}
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <div class="brand">Yan Zhang</div>
+      <div class="tagline">Moiré / twisted vdW materials · Continuum/TAPW · Topological analysis · IOPCAS</div>
+      <nav>
+        <a href="#about">关于</a>
+        <a href="#contact">联系</a>
+        <a class="btn" href="https://github.com/zhangyan31415" target="_blank" rel="noopener">GitHub →</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="about">
+      <h2>关于我</h2>
+      <p>专注于扭转/摩尔范德华材料与拓扑分析。此页仅作名片与入口。</p>
+    </section>
+
+    <section id="contact">
+      <h2>联系</h2>
+      <p>GitHub：<a href="https://github.com/zhangyan31415" target="_blank" rel="noopener">@zhangyan31415</a></p>
+      <p>邮箱：<span class="muted">（可在此填写你的邮件地址或联系信息）</span></p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap muted">© <span id="y"></span> Yan Zhang · Built with GitHub Pages</div>
+  </footer>
+
+  <script>document.getElementById('y').textContent = new Date().getFullYear()</script>
+</body>
+</html>

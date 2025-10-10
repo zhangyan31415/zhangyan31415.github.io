@@ -67,6 +67,7 @@
       <div class="tagline">Moiré / twisted vdW materials · Continuum/TAPW · Topological analysis · IOPCAS</div>
       <nav>
         <a href="#about">关于</a>
+        <a href="#demos">演示</a>
         <a href="#contact">联系</a>
         <a class="btn" href="https://github.com/zhangyan31415" target="_blank" rel="noopener">GitHub →</a>
       </nav>
@@ -76,20 +77,34 @@
   <main class="wrap">
     <section id="about">
       <h2>关于我</h2>
-      <p>专注于扭转/摩尔范德华材料与拓扑分析。此页仅作名片与入口。</p>    </section>
-
-    <section id="viewer">
+      <p>专注于扭转/摩尔范德华材料与拓扑分析。此页仅作名片与入口。</p>    </section><section id="demos">
       <h2>在线演示</h2>
-      <div class="card">
-        <p class="muted">已接入临时 Quick Tunnel（0 成本）：点击下方按钮或直接在页面内预览。</p>
-        <p style="margin:8px 0 14px">
-          <a class="btn" href="https://barn-responding-christine-respect.trycloudflare.com/" target="_blank" rel="noopener">🔗 打开在线演示（新标签）</a>
-        </p>
-        <iframe id="viewer-frame" src="https://barn-responding-christine-respect.trycloudflare.com/"
-          style="width:100%;height:78vh;border:1px solid #1f2937;border-radius:12px;background:#0b1220"
-          loading="lazy" referrerpolicy="no-referrer"></iframe>
-        <p class="muted" style="margin-top:8px">若无法加载，可能是隧道已重启导致地址变化，或后端设置了 <span class="mono">X-Frame-Options</span> / <span class="mono">Content-Security-Policy: frame-ancestors</span> 禁止被嵌入。临时测试可放宽为允许来自 <span class="mono">https://zhangyan31415.github.io</span> 的嵌入。</p>
+      <p class="muted" style="margin-top:-6px">当前使用 <span class="pill">Cloudflare Quick Tunnel</span>（临时地址，重启可能变化）。以后可切换为固定域名的 Named Tunnel。</p>
+      <div class="grid cols-2" style="margin-top:16px">
+        <article class="card">
+          <h3 style="display:flex;align-items:center;gap:8px">TAPW Band Viewer <span class="pill">实时</span></h3>
+          <p class="muted">基于 TAPW/连续模型的能带与拓扑可视化。</p>
+          <p style="margin:10px 0 14px;display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn" href="https://barn-responding-christine-respect.trycloudflare.com/" target="_blank" rel="noopener">🔗 打开项目</a>
+            <button class="btn ghost preview-btn" data-target="#frame-band" data-src="https://barn-responding-christine-respect.trycloudflare.com/" type="button">在页面内预览</button>
+          </p>
+          <div id="frame-band" class="embed" style="display:none">
+            <iframe title="Band Viewer" style="width:100%;height:60vh;border:1px solid #1f2937;border-radius:12px;background:#0b1220" loading="lazy" referrerpolicy="no-referrer"></iframe>
+          </div>
+        </article>
+        <article class="card">
+          <h3 style="display:flex;align-items:center;gap:8px">Nano 服务器监控 <span class="pill">监控</span></h3>
+          <p class="muted">轻量监控面板：状态/资源/告警。</p>
+          <p style="margin:10px 0 14px;display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn" href="https://export-discharge-brian-medicine.trycloudflare.com/" target="_blank" rel="noopener">🔗 打开项目</a>
+            <button class="btn ghost preview-btn" data-target="#frame-nano" data-src="https://export-discharge-brian-medicine.trycloudflare.com/" type="button">在页面内预览</button>
+          </p>
+          <div id="frame-nano" class="embed" style="display:none">
+            <iframe title="Nano Monitor" style="width:100%;height:60vh;border:1px solid #1f2937;border-radius:12px;background:#0b1220" loading="lazy" referrerpolicy="no-referrer"></iframe>
+          </div>
+        </article>
       </div>
+      <p class="muted" style="margin-top:12px">若页面内预览失败，通常是后端设置了 <span class="mono">X-Frame-Options</span> 或 CSP 的 <span class="mono">frame-ancestors</span> 限制嵌入；可允许来自 <span class="mono">https://zhangyan31415.github.io</span> 的嵌入。</p>
     </section>
 
     <section id="contact">
@@ -104,10 +119,32 @@
   </footer>
 
   <script>
-  // 仍保留 ?tunnel= 覆盖能力，便于后续更新临时地址而无需改代码
-  const q = new URLSearchParams(location.search).get('tunnel');
-  if(q){
-    try{ document.getElementById('viewer-frame').src = new URL(q).href; }catch{}
+  // 预览按钮：首次点击才加载 iframe（懒加载），再次点击折叠/展开
+  document.querySelectorAll('.preview-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const wrap = document.querySelector(btn.dataset.target);
+      const frame = wrap.querySelector('iframe');
+      if(wrap.style.display==='none' || !wrap.style.display){
+        if(!frame.src){ frame.src = btn.dataset.src; }
+        wrap.style.display='block'; btn.textContent='收起预览';
+      }else{ wrap.style.display='none'; btn.textContent='在页面内预览'; }
+    });
+  });
+
+  // 支持 URL 参数覆盖，便于你更换 Quick Tunnel 而不改代码：
+  // ?band=https://xxx.trycloudflare.com&nano=https://yyy.trycloudflare.com
+  const u = new URLSearchParams(location.search);
+  const band = u.get('band');
+  const nano = u.get('nano');
+  if(band){
+    const a = document.querySelector('a[href^="https://barn-responding-christine-respect"]');
+    const b = document.querySelector('button[data-target="#frame-band"]');
+    if(a) a.href = band; if(b) b.dataset.src = band;
+  }
+  if(nano){
+    const a = document.querySelector('a[href^="https://export-discharge-brian-medicine"]');
+    const b = document.querySelector('button[data-target="#frame-nano"]');
+    if(a) a.href = nano; if(b) b.dataset.src = nano;
   }
 </script>
 </body>

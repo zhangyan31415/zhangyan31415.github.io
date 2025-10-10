@@ -7,58 +7,79 @@
   <meta name="description" content="Yan Zhang (IOPCAS) — moiré/twisted vdW materials, continuum models, TAPW, topological analysis." />
   <meta name="color-scheme" content="light dark" />
   <style>
-    :root{
-      --bg: #0b1020;           /* 深蓝基底 */
-      --bg-soft:#0f172a;       /* 软背景 */
-      --text: #e6eaf2;         /* 正文颜色 */
-      --muted:#b9c3d6;         /* 次要文字 */
-      --card:#111827cc;        /* 卡片背景 */
-      --brand:#7dd3fc;         /* 品牌高亮 */
-      --brand-2:#60a5fa;       /* 品牌渐变2 */
-      --accent:#a78bfa;        /* 次高亮 */
-      --ring:#1f2937;          /* 边框/分隔 */
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0; font: 16px/1.6 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      color:var(--text); background: radial-gradient(1200px 800px at 20% -10%, #1f2937 0%, transparent 60%),
-                          radial-gradient(1000px 700px at 120% -20%, #0ea5e9 0%, transparent 45%),
-                          var(--bg);
-    }
-    .wrap{max-width:1024px; margin:0 auto; padding:32px 16px}
-    header.hero{
-      padding:72px 0 56px; position:relative; overflow:hidden;
-      background: linear-gradient(135deg, #0ea5e922 0%, #6366f122 100%);
-      border-bottom:1px solid #1f2937;
-    }
-    .brand{font-weight:800; font-size:clamp(28px, 5vw, 40px); letter-spacing:.5px}
-    .tagline{color:var(--muted); font-size:clamp(14px, 2.6vw, 18px)}
-    nav{display:flex; gap:12px; flex-wrap:wrap; margin-top:18px}
-    nav a{color:var(--text); text-decoration:none; padding:8px 12px; border:1px solid var(--ring); border-radius:999px}
-    nav a:hover{border-color:#334155; background:#0b1220}
-    .grid{display:grid; gap:16px}
-    @media (min-width:768px){ .grid.cols-2{grid-template-columns:1fr 1fr} }
-    @media (min-width:1024px){ .grid.cols-3{grid-template-columns:repeat(3, 1fr)} }
+  :root{
+    /* Dark (default) */
+    --bg:#0b1020; --bg-soft:#0f172a; --text:#e6eaf2; --muted:#b9c3d6;
+    --card: #0b1220cc; --ring:#223047; --brand:#7dd3fc; --brand-2:#60a5fa; --accent:#a78bfa;
+  }
+  [data-theme="light"]{
+    --bg:#f8fafc; --bg-soft:#ffffff; --text:#0f172a; --muted:#475569;
+    --card:#ffffffcc; --ring:#e2e8f0; --brand:#0ea5e9; --brand-2:#6366f1; --accent:#7c3aed;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; font:16px/1.6 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    color:var(--text);
+    background:
+      radial-gradient(1200px 800px at 20% -10%, #1f2937 0%, transparent 60%),
+      radial-gradient(1000px 700px at 120% -20%, #0ea5e9 0%, transparent 45%),
+      var(--bg);
+    transition: background-color .25s, color .25s;
+  }
+  [data-theme="light"] body{
+    background:
+      radial-gradient(1000px 700px at -10% -20%, #e0f2fe 0%, transparent 55%),
+      radial-gradient(900px 600px at 120% -30%, #ede9fe 0%, transparent 45%),
+      var(--bg);
+  }
+  .wrap{max-width:1100px; margin:0 auto; padding:32px 16px}
+  header.hero{
+    padding:72px 0 56px; position:relative; overflow:hidden;
+    border-bottom:1px solid var(--ring);
+    background: linear-gradient(135deg, color-mix(in oklab, var(--brand) 15%, transparent) 0%, color-mix(in oklab, var(--accent) 12%, transparent) 100%);
+  }
+  .brand{font-weight:800; font-size:clamp(28px,5vw,40px); letter-spacing:.3px}
+  .tagline{color:var(--muted); font-size:clamp(14px,2.6vw,18px)}
+  nav{display:flex; gap:12px; flex-wrap:wrap; margin-top:18px; align-items:center}
+  nav a{color:var(--text); text-decoration:none; padding:8px 12px; border:1px solid var(--ring); border-radius:999px; backdrop-filter:saturate(120%);}
+  nav a:hover{border-color:color-mix(in oklab, var(--ring) 50%, var(--brand)); background:color-mix(in oklab, var(--bg-soft) 80%, var(--brand) 20%)}
 
-    section{padding:40px 0; border-bottom:1px solid #1f2937}
-    h2{font-size:clamp(22px, 3.5vw, 28px); margin:0 0 12px}
-    p{margin:6px 0}
+  .theme-toggle{width:40px;height:40px;display:grid;place-items:center;border-radius:999px;border:1px solid var(--ring);background:color-mix(in oklab, var(--bg-soft) 85%, #0000 15%);cursor:pointer;user-select:none}
+  .theme-toggle:hover{border-color:color-mix(in oklab, var(--ring) 40%, var(--brand));}
+  .theme-toggle .sun,.theme-toggle .moon{font-size:18px;line-height:1}
+  [data-theme="light"] .theme-toggle .sun{display:inline}
+  [data-theme="light"] .theme-toggle .moon{display:none}
+  .theme-toggle .sun{display:none}
+  .theme-toggle .moon{display:inline}
+  .top-right{position:absolute; top:18px; right:16px}
 
-    .card{background:var(--card); border:1px solid #1f2937; border-radius:18px; padding:18px}
-    .card h3{margin:0 0 8px; font-size:18px}
-    .card p{color:var(--muted)}
-    .btn{
-      display:inline-block; padding:10px 14px; border-radius:12px; text-decoration:none;
-      color:#06121f; background: linear-gradient(90deg, var(--brand), var(--brand-2)); font-weight:700;
-    }
-    .btn.ghost{background:transparent; color:var(--text); border:1px solid #334155}
-    .pill{color:#06121f; background:#a7f3d0; padding:4px 8px; border-radius:999px; font-size:12px; font-weight:700}
-    footer{padding:36px 0; color:var(--muted)}
-    .muted{color:var(--muted)}
-    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;}
-    a{color:#93c5fd}
-  </style>
+  .grid{display:grid; gap:18px}
+  @media (min-width:768px){ .grid.cols-2{grid-template-columns:1fr 1fr} }
+
+  section{padding:44px 0; border-bottom:1px solid var(--ring)}
+  h2{font-size:clamp(22px,3.5vw,28px); margin:0 0 12px}
+  p{margin:6px 0}
+
+  .card{
+    background: linear-gradient(var(--card), var(--card)) padding-box,
+               linear-gradient(180deg, color-mix(in oklab, var(--brand) 15%, transparent), transparent) border-box;
+    border:1px solid transparent; border-radius:20px; padding:18px;
+    box-shadow:0 10px 28px rgba(2,6,23,.35);
+    transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+  }
+  .card:hover{transform:translateY(-2px); box-shadow:0 18px 36px rgba(2,6,23,.45)}
+  .card h3{margin:0 0 8px; font-size:18px}
+  .card p{color:var(--muted)}
+
+  .btn{display:inline-block; padding:10px 14px; border-radius:12px; text-decoration:none; color:#06121f; background:linear-gradient(90deg, var(--brand), var(--brand-2)); font-weight:700}
+  .btn.ghost{background:transparent; color:var(--text); border:1px solid var(--ring)}
+  .pill{color:#06121f; background:#a7f3d0; padding:4px 8px; border-radius:999px; font-size:12px; font-weight:700}
+  footer{padding:36px 0; color:var(--muted)}
+  .muted{color:var(--muted)}
+  .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;}
+  a{color:var(--brand-2)}
+</style>
 </head>
 <body>
   <header class="hero">
@@ -66,11 +87,12 @@
       <div class="brand">Yan Zhang</div>
       <div class="tagline">Moiré / twisted vdW materials · Continuum/TAPW · Topological analysis · IOPCAS</div>
       <nav>
-        <a href="#about">关于</a>
-        <a href="#demos">演示</a>
-        <a href="#contact">联系</a>
-        <a class="btn" href="https://github.com/zhangyan31415" target="_blank" rel="noopener">GitHub →</a>
-      </nav>
+  <a href="#about">关于</a>
+  <a href="#demos">项目</a>
+  <a href="#contact">联系</a>
+  <a class="btn" href="https://github.com/zhangyan31415" target="_blank" rel="noopener">GitHub →</a>
+</nav>
+<button id="themeToggle" class="theme-toggle top-right" title="切换明暗" aria-label="切换明暗" aria-pressed="false"><span class="sun">🌞</span><span class="moon">🌛</span></button>
     </div>
   </header>
 
@@ -78,9 +100,9 @@
     <section id="about">
       <h2>关于我</h2>
       <p>专注于扭转/摩尔范德华材料与拓扑分析。此页仅作名片与入口。</p>    </section><section id="demos">
-      <h2>在线演示</h2>
-      <p class="muted" style="margin-top:-6px">当前使用 <span class="pill">Cloudflare Quick Tunnel</span>（临时地址，重启可能变化）。以后可切换为固定域名的 Named Tunnel。</p>
-      <div class="grid cols-2" style="margin-top:16px">
+      <h2>项目体验</h2>
+      <p class="muted" style="margin-top:-6px">提示：点击下方「打开项目」后会跳转到临时通道链接；该链接<strong>可能变更</strong>。若无法打开，请刷新本页或稍后再试。</p>
+      <div class="stack" style="display:flex; flex-direction:column; gap:16px; margin-top:16px">
         <article class="card">
           <h3 style="display:flex;align-items:center;gap:8px">TAPW Band Viewer <span class="pill">实时</span></h3>
           <p class="muted">基于 TAPW/连续模型的能带与拓扑可视化。</p>
@@ -88,10 +110,12 @@
             <a class="btn" href="https://barn-responding-christine-respect.trycloudflare.com/" target="_blank" rel="noopener">🔗 打开项目</a>
             <button class="btn ghost preview-btn" data-target="#frame-band" data-src="https://barn-responding-christine-respect.trycloudflare.com/" type="button">在页面内预览</button>
           </p>
+          <p class="muted" style="margin:6px 0 0">打开项目后跳转的链接为临时通道，可能会更新。</p>
           <div id="frame-band" class="embed" style="display:none">
             <iframe title="Band Viewer" style="width:100%;height:60vh;border:1px solid #1f2937;border-radius:12px;background:#0b1220" loading="lazy" referrerpolicy="no-referrer"></iframe>
           </div>
         </article>
+
         <article class="card">
           <h3 style="display:flex;align-items:center;gap:8px">Nano 服务器监控 <span class="pill">监控</span></h3>
           <p class="muted">轻量监控面板：状态/资源/告警。</p>
@@ -99,12 +123,12 @@
             <a class="btn" href="https://export-discharge-brian-medicine.trycloudflare.com/" target="_blank" rel="noopener">🔗 打开项目</a>
             <button class="btn ghost preview-btn" data-target="#frame-nano" data-src="https://export-discharge-brian-medicine.trycloudflare.com/" type="button">在页面内预览</button>
           </p>
+          <p class="muted" style="margin:6px 0 0">打开项目后跳转的链接为临时通道，可能会更新。</p>
           <div id="frame-nano" class="embed" style="display:none">
             <iframe title="Nano Monitor" style="width:100%;height:60vh;border:1px solid #1f2937;border-radius:12px;background:#0b1220" loading="lazy" referrerpolicy="no-referrer"></iframe>
           </div>
         </article>
       </div>
-      <p class="muted" style="margin-top:12px">若页面内预览失败，通常是后端设置了 <span class="mono">X-Frame-Options</span> 或 CSP 的 <span class="mono">frame-ancestors</span> 限制嵌入；可允许来自 <span class="mono">https://zhangyan31415.github.io</span> 的嵌入。</p>
     </section>
 
     <section id="contact">
@@ -119,7 +143,24 @@
   </footer>
 
   <script>
-  // 预览按钮：首次点击才加载 iframe（懒加载），再次点击折叠/展开
+  // ---------- 主题切换（太阳 / 月亮） ----------
+(function(){
+  const root = document.documentElement;
+  const btn = document.getElementById('themeToggle');
+  const sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const saved = localStorage.getItem('theme');
+  const init = saved || (sysDark ? 'dark':'light');
+  root.setAttribute('data-theme', init);
+  if(btn){ btn.setAttribute('aria-pressed', init==='dark'); }
+  if(btn){ btn.addEventListener('click', ()=>{
+    const cur = root.getAttribute('data-theme')==='dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', cur);
+    localStorage.setItem('theme', cur);
+    btn.setAttribute('aria-pressed', cur==='dark');
+  }); }
+})();
+
+  // ---------- 预览按钮懒加载 / 折叠 ----------
   document.querySelectorAll('.preview-btn').forEach(btn=>{
     btn.addEventListener('click', ()=>{
       const wrap = document.querySelector(btn.dataset.target);
@@ -131,8 +172,7 @@
     });
   });
 
-  // 支持 URL 参数覆盖，便于你更换 Quick Tunnel 而不改代码：
-  // ?band=https://xxx.trycloudflare.com&nano=https://yyy.trycloudflare.com
+  // ---------- URL 参数覆盖 Quick Tunnel 地址 ----------
   const u = new URLSearchParams(location.search);
   const band = u.get('band');
   const nano = u.get('nano');

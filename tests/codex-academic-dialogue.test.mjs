@@ -15,6 +15,7 @@ async function readRequired(path) {
 test("exports a standalone academic dialogue page", async () => {
   const html = await readRequired("index.html");
   const head = html.match(/<head>([\s\S]*?)<\/head>/i)?.[1] ?? "";
+  const body = html.match(/<body[^>]*>([\s\S]*?)<\/body>/i)?.[1] ?? "";
 
   assert.match(html, /ZrS₂ 高阶 k·p 模型跨布里渊区爆带/);
   assert.match(html, /我让你用 GMKG/);
@@ -34,6 +35,10 @@ test("exports a standalone academic dialogue page", async () => {
   );
   assert.match(head, /name="twitter:card" content="summary_large_image"/);
   assert.match(head, /href="\/codex-academic-dialogue\/favicon\.svg"/);
+  assert.match(
+    body,
+    /<img(?=[^>]*\bsrc="\/codex-academic-dialogue\/og\.png")(?=[^>]*\bwidth="1730")(?=[^>]*\bheight="909")(?=[^>]*\balt="ZrS₂ 高阶 k·p 模型跨布里渊区爆带封面")[^>]*>/i,
+  );
   assert.match(
     html,
     /rel="canonical" href="https:\/\/zhangyan31415\.github\.io\/codex-academic-dialogue\/"/,

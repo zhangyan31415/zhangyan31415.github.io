@@ -22,6 +22,12 @@ test("exports a standalone academic dialogue page", async () => {
   assert.match(html, /\+9\.246 eV/);
   assert.match(html, /−6\.213 eV/);
   assert.match(html, /经过脱敏和压缩/);
+  assert.match(html, /<details class="full-transcript">/i);
+  assert.match(html, /完整脱敏对话 · 17 轮/);
+  assert.equal((html.match(/data-transcript-turn=/g) ?? []).length, 17);
+  assert.match(html, /现在 kp model 加权的时候，用的就是用户给的点吗？/);
+  assert.match(html, /你试一下吧。/);
+  assert.match(html, /内部推理、工具日志和运行路径未公开/);
   assert.match(html, /href="\/codex-academic-dialogue\/assets\/css\//);
   assert.match(head, /<title>ZrS₂ 高阶 k·p 模型跨布里渊区爆带/);
   assert.match(head, /<meta name="description"/);

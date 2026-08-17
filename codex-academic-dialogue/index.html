@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="/codex-academic-dialogue/assets/css/index.DYDLhyC3.css" data-rsc-css-href="/codex-academic-dialogue/assets/css/index.DYDLhyC3.css" data-precedence="vite-rsc/importer-resources"/>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="/codex-academic-dialogue/assets/css/index.BVkIWwa_.css" data-rsc-css-href="/codex-academic-dialogue/assets/css/index.BVkIWwa_.css" data-precedence="vite-rsc/importer-resources"/>
 <link rel="preload" href="/codex-academic-dialogue/assets/fonts/geist-8ac0455e797f/geist-98bbbccb.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="/codex-academic-dialogue/assets/fonts/geist-mono-00e989178794/geist-mono-013b2f2f.woff2" as="font" type="font/woff2" crossorigin />
 <style data-vinext-fonts>/* cyrillic-ext */
@@ -128,4 +128,633 @@
 
 .__variable_geist_mono_1001rt9 { --font-geist-mono: 'Geist Mono', 'Geist Mono Fallback'; }
 </style>
-<title>ZrS₂ 高阶 k·p 模型跨布里渊区爆带｜Codex 学术对话记录</title><meta name="description" content="从异常数值出发，经消融、纠错、代码实现与数值验证形成闭环的 Codex 学术对话记录。"><meta property="og:title" content="ZrS₂ 高阶 k·p 模型跨布里渊区爆带"><meta property="og:description" content="从异常数值出发，经消融、纠错、代码实现与数值验证形成闭环的 Codex 学术对话记录。"><meta property="og:type" content="website"><meta property="og:url" content="https://zhangyan31415.github.io/codex-academic-dialogue/"><meta property="og:image" content="https://zhangyan31415.github.io/codex-academic-dialogue/og.png"><meta property="og:image:width" content="1730"><meta property="og:image:height" content="909"><meta property="og:image:alt" content="ZrS₂ 高阶 k·p 模型跨布里渊区爆带"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="ZrS₂ 高阶 k·p 模型跨布里渊区爆带"><meta name="twitter:description" content="从异常数值出发，经消融、纠错、代码实现与数值验证形成闭环的 Codex 学术对话记录。"><meta name="twitter:image" content="https://zhangyan31415.github.io/codex-academic-dialogue/og.png"><link rel="shortcut icon" href="/codex-academic-dialogue/favicon.svg"><link rel="icon" href="/codex-academic-dialogue/favicon.svg"><link rel="canonical" href="https://zhangyan31415.github.io/codex-academic-dialogue/"></head><body class="__variable_geist_19ysh9d __variable_geist_mono_1001rt9"><main><header class="masthead"><a class="brand" href="#top" aria-label="返回页面顶部"><span class="brand-mark">KP</span><span>Codex 学术对话记录</span></a><div class="masthead-meta"><span>计算物理</span><span>2026 · 08</span></div></header><section class="hero-stage" id="top"><figure class="cover-figure"><img src="/codex-academic-dialogue/og.png" width="1730" height="909" alt="ZrS₂ 高阶 k·p 模型跨布里渊区爆带封面" loading="eager" fetchPriority="high" decoding="async"/></figure><h1 class="sr-only">ZrS₂ 高阶 k·p 模型跨布里渊区爆带</h1><div class="hero-summary"><div class="hero-copy"><p class="eyebrow">RESEARCH TRACE / 01</p><p class="dek">一次从异常数值到机制诊断、约束实现和反例验证的科研对话。重点不是 Agent 给出答案，而是研究者如何定义问题、推翻错误实验并设定验收标准。</p><div class="hero-tags" aria-label="记录属性"><span>Agent · Codex</span><span>17 轮连续追问</span><span>公式 × 代码 × 数值</span></div></div><aside class="hero-evidence" aria-label="关键证据"><div class="hero-anomaly"><p class="evidence-label">ORIGINAL ANOMALY</p><strong>+9.246 eV</strong><p>原加权模型在 1.5b₁ 处的最高能带</p></div><dl><div><dt>模型维数</dt><dd>152</dd></div><div><dt>多项式阶数</dt><dd>8</dd></div><div><dt>初始加权点</dt><dd>3</dd></div></dl></aside></div></section><section class="section loop-section" aria-labelledby="loop-title"><div class="section-heading"><p class="eyebrow">METHOD</p><h2 id="loop-title">研究闭环</h2><p>每一步都产生可证伪的下一步，而不是把第一次解释当作结论。</p></div><ol class="research-loop"><li><span class="loop-number">01</span><h3>异常</h3><p>第一布里渊区内拟合很好，区外能带却冲到正能量。</p></li><li><span class="loop-number">02</span><h3>假设</h3><p>有限 Q 截断、采样路径、拟合权重与高阶外推逐项排查。</p></li><li><span class="loop-number">03</span><h3>消融</h3><p>对比 q04/q05、加权/不加权与新增 M/K 邻点。</p></li><li><span class="loop-number">04</span><h3>纠正</h3><p>研究者指出路径用错，要求独立重跑真正的 GMKG。</p></li><li><span class="loop-number">05</span><h3>实现</h3><p>加入 reciprocal sewing、阶次 ridge 与区外能量损失。</p></li><li><span class="loop-number">06</span><h3>验证</h3><p>用 GMKG–Heff 和宽区能带共同检验新判断。</p></li></ol></section><section class="section question-section" aria-labelledby="question-title"><div class="question-grid"><div class="section-heading"><p class="eyebrow">RESEARCH QUESTION</p><h2 id="question-title">为什么区内很准，区外却直接炸掉？</h2><p>原模型只在第一 BZ 的少量点上拟合低能子空间，却使用最高八阶多项式。评估半径从训练区的约 0.577 扩展到 1.5 后，高阶项可能被放大数十到上千倍。</p></div><div class="formula-card" aria-label="倒格矢周期关系"><span class="formula-kicker">理想的周期关系</span><div class="formula">H(k + G) = S<sub>G</sub> H(k) S<sub>G</sub><sup>†</sup></div><p>但有限 Q 截断使 S<sub>G</sub> 成为 partial isometry。关键问题不是公式是否成立，而是缺失子空间中的高阶分支没有被 loss 约束。</p></div></div></section><section class="section chronology-section" aria-labelledby="chronology-title"><div class="section-heading"><p class="eyebrow">CURATED TRANSCRIPT</p><h2 id="chronology-title">从追问到可复核结论</h2><p>以下保留原对话的推理顺序；相邻的运行播报和重复表述已合并。</p></div><ol class="chronology"><li><div class="chronology-mark">01</div><div class="chronology-body"><span class="role-chip">研究者</span><h3>先确认代码究竟在拟合什么</h3><blockquote>“现在 kp model 加权的时候，用的就是用户给的点吗？”</blockquote><p>Agent 沿代码数据流核对：完整矩阵、one-sided 与 two-sided 三类损失只在指定的 3 个 k 点计算。这里的权重是损失项权重，不是 k 点之间的权重。</p></div></li><li><div class="chronology-mark">02</div><div class="chronology-body"><span class="role-chip">研究者</span><h3>把问题从第一 BZ 推到第二 BZ</h3><blockquote>“能不能用 sewing 把 Heff(k) 变成近似的 Heff(k+b₁)，加入拟合，防止外面炸掉？”</blockquote><p>Agent 先验证有限 Q 基底：152 维空间中，平移 sewing 只有 112 维可匹配。共同子块协变到机器精度，但缺失的 40 维恰好没有受到约束。</p></div></li><li><div class="chronology-mark">03</div><div class="chronology-body"><span class="role-chip">共同实验</span><h3>先不改核心代码，直接生成区外训练数据</h3><blockquote>把路径末点改为 Γ+b₁，重新生成 TAPW 与低能模型。</blockquote><p>单独加入区外路径把 1.5b₁ 处最高带从 +9.246 eV 压到 −2.131 eV；再给临近末点加权后达到 −4.750 eV，但仍有约 1.465 eV 的最大周期误差。</p></div></li><li><div class="chronology-mark">04</div><div class="chronology-body"><span class="role-chip">研究者</span><h3>用反例检验解释</h3><blockquote>“如果用 q05 呢？不用 G₁？你试试。”</blockquote><p>扩大 Q 截断却不提供区外数据，结果并未改善：q05 在 1.5b₁ 仍升至 +9.403 eV。由此排除“只要扩大 Q shell 就会自动稳定”的解释。</p></div></li><li><div class="chronology-mark">05</div><div class="chronology-body"><span class="role-chip">研究者</span><h3>要求严格消融</h3><blockquote>“不加权会不炸吗？你试过吗？”</blockquote><p>完全去掉 one-sided 与 two-sided 权重后，灾难性正能量发散消失，1.5b₁ 处回到 −4.370 eV。问题由“可能与权重有关”收缩为可定量定位的病态外推。</p></div></li><li><div class="chronology-mark">06</div><div class="chronology-body"><span class="role-chip">Agent</span><h3>从现象进入根因</h3><blockquote>逐类权重消融、条件数比较与多项式逐阶展开。</blockquote><p>one-sided 是主要爆带驱动力；two-sided 使拟合矩阵最病态。4、5 阶项首先把顶带推过零，6 阶继续放大，说明问题来自强局部约束与无正则高阶外推的组合。</p></div></li><li><div class="chronology-mark">07</div><div class="chronology-body"><span class="role-chip">共同实现</span><h3>把物理判断变成代码约束</h3><blockquote>新增 reciprocal sewing、degree ridge 与区外能量损失。</blockquote><p>约束不再只描述第一 BZ 内的局部精度，而是显式惩罚高阶响应并比较折回后的区外能量。每个新机制都用独立配置与宽区能带复算。</p></div></li><li><div class="chronology-mark">08</div><div class="chronology-body"><span class="role-chip">研究者</span><h3>继续攻击新方案的边界</h3><blockquote>“加到 2b₁、3b₁ 呢？还要看 −4b₁ 到 4b₁，以及 GMKG 和 Heff 的对比。”</blockquote><p>更多 sewing shift 反而更差，因为可匹配子空间从 112 维降到 72、32 维。这个负结果促使方案转向覆盖完整谱的 nonlinear energy loss。</p></div></li></ol></section><section class="section dialogue-section" aria-labelledby="dialogue-title"><div class="section-heading compact"><p class="eyebrow">CRITICAL TURN</p><h2 id="dialogue-title">关键纠错没有被删掉</h2></div><div class="dialogue-stack"><article class="message researcher"><div class="speaker">研究者</div><blockquote>“我让你用 GMKG。”</blockquote><p>Agent 前一轮把 G–M–K–G₁ 的结果当成了目标实验。研究者明确指出路径错误，要求使用独立目录重跑真正闭合到 Γ 的 GMKG。</p></article><article class="message agent"><div class="speaker">Agent · 纠正后</div><blockquote>“路径确实用错了。已经按真正的 q04 G–M–K–G 全流程重跑，闭合末点验证为 Γ，没有混入 G₁ 数据。”</blockquote><p>新结果推翻了“增加 M/K 邻点能改善区外稳定性”的预期：第一 BZ 内误差更小，但 1.5b₁ 处反而升至 +11.654 eV。</p></article></div></section><section class="section evidence-section" aria-labelledby="evidence-title"><div class="section-heading"><p class="eyebrow">ABLATION</p><h2 id="evidence-title">第一轮消融：权重是主要触发因素</h2><p>去掉低能子空间的强权重后，灾难性的正能量发散消失；但跨区周期性仍未完全恢复。</p></div><div class="table-wrap"><table><caption>q04 GMKG 在 1.5b₁ 处的最高能带</caption><thead><tr><th scope="col">实验</th><th scope="col">加权策略</th><th scope="col">Etop(1.5b₁)</th><th scope="col">判断</th></tr></thead><tbody><tr class="danger-row"><th scope="row">原模型</th><td>one / two = 100 / 300</td><td>+9.246 eV</td><td>灾难性发散</td></tr><tr><th scope="row">不加权</th><td>one / two = 0 / 0</td><td>−4.370 eV</td><td>爆炸消失，仍有外推误差</td></tr><tr class="success-row"><th scope="row">ridge + sewing</th><td>阶次正则 + 周期约束</td><td>−6.213 eV</td><td>接近跨区目标</td></tr></tbody></table></div></section><section class="section diagnosis-section" aria-labelledby="diagnosis-title"><div class="diagnosis-grid"><div class="section-heading"><p class="eyebrow">ROOT CAUSE</p><h2 id="diagnosis-title">不是权重写错，而是目标函数在奖励错误的外推</h2><p>代码确认残差行乘的是 √w，不是把权重重复平方。真正的问题是归一化后，少数低能矩阵元的有效权重远高于其余 Hamiltonian，拟合器会牺牲全矩阵来换取三个点上的局部精度。</p></div><div class="weight-stack" aria-label="有效权重对比"><div><span>low–low / 普通矩阵元</span><strong>18,089×</strong></div><div><span>低能列 / 普通矩阵元</span><strong>761×</strong></div><div><span>完整矩阵残差</span><strong>增大 3.4×</strong></div></div></div><div class="formula-wide" aria-label="原始加权损失"><span>原始目标</span><code>L = Σ<sub>k∈<!-- -->{0,40,50}</sub> [ ‖ΔH‖² / 152² + 100 ‖ΔHU‖² / (152×20) + 300 ‖U†ΔHU‖² / 20² ]</code></div><div class="degree-grid" aria-label="高阶项逐阶诊断"><article><span>3 阶截断</span><strong>−4.58 eV</strong><p>仍保持在物理能量范围。</p></article><article class="warning-card"><span>加入 4 阶</span><strong>+0.49 eV</strong><p>顶带首次穿过零，发散开始。</p></article><article class="warning-card"><span>加入 5 阶</span><strong>+5.85 eV</strong><p>高阶抵消离开训练区后失效。</p></article><article class="danger-card"><span>加入 6 阶</span><strong>+8.54 eV</strong><p>错误继续被外推放大。</p></article></div></section><section class="section rejected-section" aria-labelledby="rejected-title"><div class="section-heading"><p class="eyebrow">NEGATIVE RESULTS</p><h2 id="rejected-title">三个听起来合理、但被数据否定的方案</h2><p>负结果保留在记录里，因为它们决定了下一步不能再沿哪条路线浪费计算。</p></div><div class="rejected-grid"><article><div class="rejected-topline"><span>H<!-- -->1</span><b>否定</b></div><h3>扩大 Q shell 就够了</h3><p>q05 的模型维数从 152 增到 248，但 1.5b₁ 最高带从 +9.246 eV 变为 +9.403 eV，周期误差更大。</p></article><article><div class="rejected-topline"><span>H<!-- -->2</span><b>否定</b></div><h3>在 M/K 附近多放点就能稳定</h3><p>局部 RMS 略有改善，区外却恶化到 +11.654 eV；这是权重重新分配，不是周期性恢复。</p></article><article><div class="rejected-topline"><span>H<!-- -->3</span><b>否定</b></div><h3>不断增加 sewing shift 会单调改善</h3><p>shift 越远，共同 Q 子空间越小；到 3b₁ 时宽区最高带反而达到 155.097 eV。</p></article></div></section><section class="section implementation-section" aria-labelledby="implementation-title"><div class="section-heading"><p class="eyebrow">IMPLEMENTATION</p><h2 id="implementation-title">把科学判断写进拟合目标</h2><p>Agent 在独立分支实现两类线性约束，随后加入覆盖完整能谱的 nonlinear energy loss。每类机制都能通过配置开关独立消融。</p></div><div class="constraint-grid"><article><span class="constraint-index">A / reciprocal sewing</span><div class="formula small">L<sub>sew</sub> = Σ<sub>G,k</sub> w<sub>G</sub> ‖P<sub>G</sub>H<sub>model</sub>(k+G)P<sub>G</sub> − S<sub>G</sub>H<sub>eff</sub>(k)S<sub>G</sub><sup>†</sup>‖²</div><p>只比较有限 Q 基底中能够被倒格矢平移匹配的共同子空间。</p></article><article><span class="constraint-index">B / degree ridge</span><div class="formula small">L<sub>ridge</sub> = Σ<sub>j</sub> λ<sub>dⱼ</sub>|θ<sub>j</sub>|²,   λ<sub>d</sub> = λ₄(d−3)²</div><p>惩罚归一化后的高阶响应幅度，而不是量纲依赖的裸系数。</p></article></div><div class="result-banner"><div><span>原加权模型 · 1.5b₁</span><strong>+9.246 eV</strong></div><div class="result-arrow" aria-hidden="true">→</div><div><span>ridge + sewing · 1.5b₁</span><strong>−6.213 eV</strong></div><p>同时，第一 BZ 顶部 10 带 RMS 保持在 1.76 meV。继续堆叠更远的 sewing shift 并不会单调改善，这一限制由后续反例验证。</p></div></section><section class="section nonlinear-section" aria-labelledby="nonlinear-title"><div class="nonlinear-grid"><div class="section-heading"><p class="eyebrow">FINAL EXTENSION</p><h2 id="nonlinear-title">完整谱需要能量层面的区外约束</h2><p>partial sewing 约束不到缺失子空间。最终新增的 nonlinear loss 直接要求区外 top bands 接近折回第一 BZ 后的 Heff 能量，并保留 matrix、ridge 与 sewing 三项。</p></div><div class="nonlinear-metrics"><div><span>原模型 Etop(4b₁)</span><strong>100.83 eV</strong></div><div><span>区外能量约束后</span><strong>−1.610 eV</strong></div><div><span>GMKG top-10 RMS</span><strong>1.98 meV</strong></div></div></div><p class="nonlinear-caveat">这仍不是“严格周期”的终点：非线性优化不保证随范围或权重单调变好。研究结论因此被限定为“显著压制宽区发散，同时保持第一 BZ 精度”，而不是宣称问题已经数学上完全解决。</p></section><section class="section responsibility-section" aria-labelledby="responsibility-title"><div class="section-heading"><p class="eyebrow">HUMAN IN THE LOOP</p><h2 id="responsibility-title">研究者仍然负责什么</h2></div><div class="responsibility-grid"><article><span>01</span><h3>提出物理假设</h3><p>把“区外爆带”转化为有限 Q sewing、训练范围、损失权重与高阶外推之间的可检验问题。</p></article><article><span>02</span><h3>发现实验跑偏</h3><p>识别 G–M–K–G₁ 与真正 GMKG 被混用，要求隔离数据并完整重跑。</p></article><article><span>03</span><h3>定义验收标准</h3><p>不能只看第一 BZ RMS；必须同时看宽区谱、周期误差、GMKG–Heff 与负对照。</p></article><article><span>04</span><h3>限制最终结论</h3><p>区分“灾难性发散消失”“外推改善”和“严格周期恢复”，不让数值进步变成过度宣称。</p></article></div></section><aside class="redaction-note" aria-label="脱敏说明"><span>公开说明</span><p>本页由原始 Codex 任务整理，经过脱敏和压缩；保留了问题顺序、研究者纠错、被否定的假设与关键数值结论。</p></aside><footer class="site-footer"><div><span class="brand-mark">KP</span><p>Agent-assisted research, researcher-owned conclusions.</p></div><p>只读公开记录 · 公式、代码与数值交叉验证</p></footer></main></body></html>
+<title>ZrS₂ 高阶 k·p 模型跨布里渊区爆带｜Codex 学术对话记录</title><meta name="description" content="从异常数值出发，经消融、纠错、代码实现与数值验证形成闭环的 Codex 学术对话记录。"><meta property="og:title" content="ZrS₂ 高阶 k·p 模型跨布里渊区爆带"><meta property="og:description" content="从异常数值出发，经消融、纠错、代码实现与数值验证形成闭环的 Codex 学术对话记录。"><meta property="og:type" content="website"><meta property="og:url" content="https://zhangyan31415.github.io/codex-academic-dialogue/"><meta property="og:image" content="https://zhangyan31415.github.io/codex-academic-dialogue/og.png"><meta property="og:image:width" content="1730"><meta property="og:image:height" content="909"><meta property="og:image:alt" content="ZrS₂ 高阶 k·p 模型跨布里渊区爆带"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="ZrS₂ 高阶 k·p 模型跨布里渊区爆带"><meta name="twitter:description" content="从异常数值出发，经消融、纠错、代码实现与数值验证形成闭环的 Codex 学术对话记录。"><meta name="twitter:image" content="https://zhangyan31415.github.io/codex-academic-dialogue/og.png"><link rel="shortcut icon" href="/codex-academic-dialogue/favicon.svg"><link rel="icon" href="/codex-academic-dialogue/favicon.svg"><link rel="canonical" href="https://zhangyan31415.github.io/codex-academic-dialogue/"></head><body class="__variable_geist_19ysh9d __variable_geist_mono_1001rt9"><main><header class="masthead"><a class="brand" href="#top" aria-label="返回页面顶部"><span class="brand-mark">KP</span><span>Codex 学术对话记录</span></a><div class="masthead-meta"><span>计算物理</span><span>2026 · 08</span></div></header><section class="hero-stage" id="top"><figure class="cover-figure"><img src="/codex-academic-dialogue/og.png" width="1730" height="909" alt="ZrS₂ 高阶 k·p 模型跨布里渊区爆带封面" loading="eager" fetchPriority="high" decoding="async"/></figure><h1 class="sr-only">ZrS₂ 高阶 k·p 模型跨布里渊区爆带</h1><div class="hero-summary"><div class="hero-copy"><p class="eyebrow">RESEARCH TRACE / 01</p><p class="dek">一次从异常数值到机制诊断、约束实现和反例验证的科研对话。重点不是 Agent 给出答案，而是研究者如何定义问题、推翻错误实验并设定验收标准。</p><div class="hero-tags" aria-label="记录属性"><span>Agent · Codex</span><span>17 轮连续追问</span><span>公式 × 代码 × 数值</span></div></div><aside class="hero-evidence" aria-label="关键证据"><div class="hero-anomaly"><p class="evidence-label">ORIGINAL ANOMALY</p><strong>+9.246 eV</strong><p>原加权模型在 1.5b₁ 处的最高能带</p></div><dl><div><dt>模型维数</dt><dd>152</dd></div><div><dt>多项式阶数</dt><dd>8</dd></div><div><dt>初始加权点</dt><dd>3</dd></div></dl></aside></div></section><section class="section loop-section" aria-labelledby="loop-title"><div class="section-heading"><p class="eyebrow">METHOD</p><h2 id="loop-title">研究闭环</h2><p>每一步都产生可证伪的下一步，而不是把第一次解释当作结论。</p></div><ol class="research-loop"><li><span class="loop-number">01</span><h3>异常</h3><p>第一布里渊区内拟合很好，区外能带却冲到正能量。</p></li><li><span class="loop-number">02</span><h3>假设</h3><p>有限 Q 截断、采样路径、拟合权重与高阶外推逐项排查。</p></li><li><span class="loop-number">03</span><h3>消融</h3><p>对比 q04/q05、加权/不加权与新增 M/K 邻点。</p></li><li><span class="loop-number">04</span><h3>纠正</h3><p>研究者指出路径用错，要求独立重跑真正的 GMKG。</p></li><li><span class="loop-number">05</span><h3>实现</h3><p>加入 reciprocal sewing、阶次 ridge 与区外能量损失。</p></li><li><span class="loop-number">06</span><h3>验证</h3><p>用 GMKG–Heff 和宽区能带共同检验新判断。</p></li></ol></section><section class="section question-section" aria-labelledby="question-title"><div class="question-grid"><div class="section-heading"><p class="eyebrow">RESEARCH QUESTION</p><h2 id="question-title">为什么区内很准，区外却直接炸掉？</h2><p>原模型只在第一 BZ 的少量点上拟合低能子空间，却使用最高八阶多项式。评估半径从训练区的约 0.577 扩展到 1.5 后，高阶项可能被放大数十到上千倍。</p></div><div class="formula-card" aria-label="倒格矢周期关系"><span class="formula-kicker">理想的周期关系</span><div class="formula">H(k + G) = S<sub>G</sub> H(k) S<sub>G</sub><sup>†</sup></div><p>但有限 Q 截断使 S<sub>G</sub> 成为 partial isometry。关键问题不是公式是否成立，而是缺失子空间中的高阶分支没有被 loss 约束。</p></div></div></section><section class="section chronology-section" aria-labelledby="chronology-title"><div class="section-heading"><p class="eyebrow">CURATED TRANSCRIPT</p><h2 id="chronology-title">从追问到可复核结论</h2><p>以下保留原对话的推理顺序；相邻的运行播报和重复表述已合并。</p></div><ol class="chronology"><li><div class="chronology-mark">01</div><div class="chronology-body"><span class="role-chip">研究者</span><h3>先确认代码究竟在拟合什么</h3><blockquote>“现在 kp model 加权的时候，用的就是用户给的点吗？”</blockquote><p>Agent 沿代码数据流核对：完整矩阵、one-sided 与 two-sided 三类损失只在指定的 3 个 k 点计算。这里的权重是损失项权重，不是 k 点之间的权重。</p></div></li><li><div class="chronology-mark">02</div><div class="chronology-body"><span class="role-chip">研究者</span><h3>把问题从第一 BZ 推到第二 BZ</h3><blockquote>“能不能用 sewing 把 Heff(k) 变成近似的 Heff(k+b₁)，加入拟合，防止外面炸掉？”</blockquote><p>Agent 先验证有限 Q 基底：152 维空间中，平移 sewing 只有 112 维可匹配。共同子块协变到机器精度，但缺失的 40 维恰好没有受到约束。</p></div></li><li><div class="chronology-mark">03</div><div class="chronology-body"><span class="role-chip">共同实验</span><h3>先不改核心代码，直接生成区外训练数据</h3><blockquote>把路径末点改为 Γ+b₁，重新生成 TAPW 与低能模型。</blockquote><p>单独加入区外路径把 1.5b₁ 处最高带从 +9.246 eV 压到 −2.131 eV；再给临近末点加权后达到 −4.750 eV，但仍有约 1.465 eV 的最大周期误差。</p></div></li><li><div class="chronology-mark">04</div><div class="chronology-body"><span class="role-chip">研究者</span><h3>用反例检验解释</h3><blockquote>“如果用 q05 呢？不用 G₁？你试试。”</blockquote><p>扩大 Q 截断却不提供区外数据，结果并未改善：q05 在 1.5b₁ 仍升至 +9.403 eV。由此排除“只要扩大 Q shell 就会自动稳定”的解释。</p></div></li><li><div class="chronology-mark">05</div><div class="chronology-body"><span class="role-chip">研究者</span><h3>要求严格消融</h3><blockquote>“不加权会不炸吗？你试过吗？”</blockquote><p>完全去掉 one-sided 与 two-sided 权重后，灾难性正能量发散消失，1.5b₁ 处回到 −4.370 eV。问题由“可能与权重有关”收缩为可定量定位的病态外推。</p></div></li><li><div class="chronology-mark">06</div><div class="chronology-body"><span class="role-chip">Agent</span><h3>从现象进入根因</h3><blockquote>逐类权重消融、条件数比较与多项式逐阶展开。</blockquote><p>one-sided 是主要爆带驱动力；two-sided 使拟合矩阵最病态。4、5 阶项首先把顶带推过零，6 阶继续放大，说明问题来自强局部约束与无正则高阶外推的组合。</p></div></li><li><div class="chronology-mark">07</div><div class="chronology-body"><span class="role-chip">共同实现</span><h3>把物理判断变成代码约束</h3><blockquote>新增 reciprocal sewing、degree ridge 与区外能量损失。</blockquote><p>约束不再只描述第一 BZ 内的局部精度，而是显式惩罚高阶响应并比较折回后的区外能量。每个新机制都用独立配置与宽区能带复算。</p></div></li><li><div class="chronology-mark">08</div><div class="chronology-body"><span class="role-chip">研究者</span><h3>继续攻击新方案的边界</h3><blockquote>“加到 2b₁、3b₁ 呢？还要看 −4b₁ 到 4b₁，以及 GMKG 和 Heff 的对比。”</blockquote><p>更多 sewing shift 反而更差，因为可匹配子空间从 112 维降到 72、32 维。这个负结果促使方案转向覆盖完整谱的 nonlinear energy loss。</p></div></li></ol></section><section class="section dialogue-section" aria-labelledby="dialogue-title"><div class="section-heading compact"><p class="eyebrow">CRITICAL TURN</p><h2 id="dialogue-title">关键纠错没有被删掉</h2></div><div class="dialogue-stack"><article class="message researcher"><div class="speaker">研究者</div><blockquote>“我让你用 GMKG。”</blockquote><p>Agent 前一轮把 G–M–K–G₁ 的结果当成了目标实验。研究者明确指出路径错误，要求使用独立目录重跑真正闭合到 Γ 的 GMKG。</p></article><article class="message agent"><div class="speaker">Agent · 纠正后</div><blockquote>“路径确实用错了。已经按真正的 q04 G–M–K–G 全流程重跑，闭合末点验证为 Γ，没有混入 G₁ 数据。”</blockquote><p>新结果推翻了“增加 M/K 邻点能改善区外稳定性”的预期：第一 BZ 内误差更小，但 1.5b₁ 处反而升至 +11.654 eV。</p></article></div></section><section class="section evidence-section" aria-labelledby="evidence-title"><div class="section-heading"><p class="eyebrow">ABLATION</p><h2 id="evidence-title">第一轮消融：权重是主要触发因素</h2><p>去掉低能子空间的强权重后，灾难性的正能量发散消失；但跨区周期性仍未完全恢复。</p></div><div class="table-wrap"><table><caption>q04 GMKG 在 1.5b₁ 处的最高能带</caption><thead><tr><th scope="col">实验</th><th scope="col">加权策略</th><th scope="col">Etop(1.5b₁)</th><th scope="col">判断</th></tr></thead><tbody><tr class="danger-row"><th scope="row">原模型</th><td>one / two = 100 / 300</td><td>+9.246 eV</td><td>灾难性发散</td></tr><tr><th scope="row">不加权</th><td>one / two = 0 / 0</td><td>−4.370 eV</td><td>爆炸消失，仍有外推误差</td></tr><tr class="success-row"><th scope="row">ridge + sewing</th><td>阶次正则 + 周期约束</td><td>−6.213 eV</td><td>接近跨区目标</td></tr></tbody></table></div></section><section class="section diagnosis-section" aria-labelledby="diagnosis-title"><div class="diagnosis-grid"><div class="section-heading"><p class="eyebrow">ROOT CAUSE</p><h2 id="diagnosis-title">不是权重写错，而是目标函数在奖励错误的外推</h2><p>代码确认残差行乘的是 √w，不是把权重重复平方。真正的问题是归一化后，少数低能矩阵元的有效权重远高于其余 Hamiltonian，拟合器会牺牲全矩阵来换取三个点上的局部精度。</p></div><div class="weight-stack" aria-label="有效权重对比"><div><span>low–low / 普通矩阵元</span><strong>18,089×</strong></div><div><span>低能列 / 普通矩阵元</span><strong>761×</strong></div><div><span>完整矩阵残差</span><strong>增大 3.4×</strong></div></div></div><div class="formula-wide" aria-label="原始加权损失"><span>原始目标</span><code>L = Σ<sub>k∈<!-- -->{0,40,50}</sub> [ ‖ΔH‖² / 152² + 100 ‖ΔHU‖² / (152×20) + 300 ‖U†ΔHU‖² / 20² ]</code></div><div class="degree-grid" aria-label="高阶项逐阶诊断"><article><span>3 阶截断</span><strong>−4.58 eV</strong><p>仍保持在物理能量范围。</p></article><article class="warning-card"><span>加入 4 阶</span><strong>+0.49 eV</strong><p>顶带首次穿过零，发散开始。</p></article><article class="warning-card"><span>加入 5 阶</span><strong>+5.85 eV</strong><p>高阶抵消离开训练区后失效。</p></article><article class="danger-card"><span>加入 6 阶</span><strong>+8.54 eV</strong><p>错误继续被外推放大。</p></article></div></section><section class="section rejected-section" aria-labelledby="rejected-title"><div class="section-heading"><p class="eyebrow">NEGATIVE RESULTS</p><h2 id="rejected-title">三个听起来合理、但被数据否定的方案</h2><p>负结果保留在记录里，因为它们决定了下一步不能再沿哪条路线浪费计算。</p></div><div class="rejected-grid"><article><div class="rejected-topline"><span>H<!-- -->1</span><b>否定</b></div><h3>扩大 Q shell 就够了</h3><p>q05 的模型维数从 152 增到 248，但 1.5b₁ 最高带从 +9.246 eV 变为 +9.403 eV，周期误差更大。</p></article><article><div class="rejected-topline"><span>H<!-- -->2</span><b>否定</b></div><h3>在 M/K 附近多放点就能稳定</h3><p>局部 RMS 略有改善，区外却恶化到 +11.654 eV；这是权重重新分配，不是周期性恢复。</p></article><article><div class="rejected-topline"><span>H<!-- -->3</span><b>否定</b></div><h3>不断增加 sewing shift 会单调改善</h3><p>shift 越远，共同 Q 子空间越小；到 3b₁ 时宽区最高带反而达到 155.097 eV。</p></article></div></section><section class="section implementation-section" aria-labelledby="implementation-title"><div class="section-heading"><p class="eyebrow">IMPLEMENTATION</p><h2 id="implementation-title">把科学判断写进拟合目标</h2><p>Agent 在独立分支实现两类线性约束，随后加入覆盖完整能谱的 nonlinear energy loss。每类机制都能通过配置开关独立消融。</p></div><div class="constraint-grid"><article><span class="constraint-index">A / reciprocal sewing</span><div class="formula small">L<sub>sew</sub> = Σ<sub>G,k</sub> w<sub>G</sub> ‖P<sub>G</sub>H<sub>model</sub>(k+G)P<sub>G</sub> − S<sub>G</sub>H<sub>eff</sub>(k)S<sub>G</sub><sup>†</sup>‖²</div><p>只比较有限 Q 基底中能够被倒格矢平移匹配的共同子空间。</p></article><article><span class="constraint-index">B / degree ridge</span><div class="formula small">L<sub>ridge</sub> = Σ<sub>j</sub> λ<sub>dⱼ</sub>|θ<sub>j</sub>|²,   λ<sub>d</sub> = λ₄(d−3)²</div><p>惩罚归一化后的高阶响应幅度，而不是量纲依赖的裸系数。</p></article></div><div class="result-banner"><div><span>原加权模型 · 1.5b₁</span><strong>+9.246 eV</strong></div><div class="result-arrow" aria-hidden="true">→</div><div><span>ridge + sewing · 1.5b₁</span><strong>−6.213 eV</strong></div><p>同时，第一 BZ 顶部 10 带 RMS 保持在 1.76 meV。继续堆叠更远的 sewing shift 并不会单调改善，这一限制由后续反例验证。</p></div></section><section class="section nonlinear-section" aria-labelledby="nonlinear-title"><div class="nonlinear-grid"><div class="section-heading"><p class="eyebrow">FINAL EXTENSION</p><h2 id="nonlinear-title">完整谱需要能量层面的区外约束</h2><p>partial sewing 约束不到缺失子空间。最终新增的 nonlinear loss 直接要求区外 top bands 接近折回第一 BZ 后的 Heff 能量，并保留 matrix、ridge 与 sewing 三项。</p></div><div class="nonlinear-metrics"><div><span>原模型 Etop(4b₁)</span><strong>100.83 eV</strong></div><div><span>区外能量约束后</span><strong>−1.610 eV</strong></div><div><span>GMKG top-10 RMS</span><strong>1.98 meV</strong></div></div></div><p class="nonlinear-caveat">这仍不是“严格周期”的终点：非线性优化不保证随范围或权重单调变好。研究结论因此被限定为“显著压制宽区发散，同时保持第一 BZ 精度”，而不是宣称问题已经数学上完全解决。</p></section><section class="section transcript-section" aria-labelledby="transcript-title"><div class="section-heading"><p class="eyebrow">FULL TRANSCRIPT</p><h2 id="transcript-title">完整对话记录</h2><p>需要核对推理过程时，可以展开逐轮阅读；默认折叠以保持页面信息层级。</p></div><details class="full-transcript"><summary><span><strong>完整脱敏对话 · 17 轮</strong><small>研究者问题 + Agent 最终回答</small></span></summary><p class="transcript-disclosure-note">内部推理、工具日志和运行路径未公开；公式、数值、纠错、消融与负结果均按原顺序保留。</p><div class="transcript-turns"><article class="transcript-turn" id="transcript-turn-01" data-transcript-turn="01"><div class="transcript-turn-index"><span>TURN</span><strong>01</strong></div><div class="transcript-messages"><section class="transcript-message transcript-researcher"><span class="transcript-role">研究者</span><pre>现在 kp model 加权的时候，用的就是用户给的点吗？</pre></section><section class="transcript-message transcript-agent"><span class="transcript-role">Agent</span><pre>对。当前 `model.fit.method` 接口中：
+
+- `fit.kpoints` 是投影输出 `kpoints.npy/heff.npy` 的行索引。
+- Hamiltonian 的完整、one-sided、two-sided 三项损失都只在这些点上计算，并对这些点等权平均；不会插值或自动增加附近点。pipeline.py（[本地路径已脱敏]）
+- `one_sided_weight`、`two_sided_weight` 是“损失项权重”，不是不同 k 点之间的权重。response_basis.py（[本地路径已脱敏]）
+
+例如当前 ZrS₂ 配置的 `kpoints: [0, 40, 50]`，加权 Hamiltonian 拟合就只使用第 0、40、50 行。配置文件（[本地路径已脱敏]）
+
+唯一的补充是 nonlinear 模式：Hamiltonian 加权仍用 `fit.kpoints`，但额外的能带损失使用 `fit.band_kpoints`；若写 `all`，则使用全部投影点。pipeline.py（[本地路径已脱敏]）</pre></section></div></article><article class="transcript-turn" id="transcript-turn-02" data-transcript-turn="02"><div class="transcript-turn-index"><span>TURN</span><strong>02</strong></div><div class="transcript-messages"><section class="transcript-message transcript-researcher"><span class="transcript-role">研究者</span><pre>有一个问题，现在只处理了第一步里渊区，你知道怎么处理第二不里渊区吗？是不是有一个sew matrix可以直接把heff(k)变成近似的heff(k+b1)?，如果把这个加的加权fit点里面，会不会更好一点呢？防止在第一不里渊区很好，到外面直接炸掉？就像现在的Zrs2的3.89的加权后的Gamm valley，你用model画(-1.5b1,0)到(1.5b1,0）的能带就能看出来外面直接炸了。所有测试在[计算环境已脱敏]跑。你先思考一下
+
+moirekp环境啊！不要设置任何线程进程上限！在[计算环境已脱敏]测试</pre></section><section class="transcript-message transcript-agent"><span class="transcript-role">Agent</span><pre>结论：你的 sewing-matrix 直觉是对的，但在当前有限 q04 基组里，不能直接把 \(S H_{\rm eff}(k)S^\dagger\) 当成完整的 \(H_{\rm eff}(k+b_1)\)。简单把它加入加权 fit，大概率解决不了区外发散，甚至可能损伤第一 BZ 的拟合。
+
+无限 Q 基组下确实有
+
+\[
+H(k+G)=S_G H(k)S_G^\dagger,\qquad
+S_G|\alpha,a,Q\rangle=|\alpha,a,Q+G\rangle .
+\]
+
+但当前 ZrS₂ Γ 模型只有 152 维、每个 qset 19 个 Q 点。按 \(+b_1\) 平移：
+
+- sewing rank 是 112；
+- 有 40 个基矢无法匹配；
+- common block 上 covariance residual 约 \(10^{-16}\)，说明现有模型结构本来就满足这部分关系；
+- 对整个 152 维矩阵，residual 约 \(0.49\sim0.53\)，不能视为完整幺正变换。
+
+现有 topology sewing 实现本身也是 partial shift，并明确允许 finite-Q 缺块。chern_post.py（[本地路径已脱敏]）
+
+更关键的是，目标 20 带子空间也没有被这个 partial sewing 很好地保范：
+
+- \(+b_1\) 时最小奇异值约 \(0.916\sim0.975\)；
+- \(-b_1\) 在部分点会降到 \(0.598\)；
+- 距离现有 WCC 使用的 \(10^{-3}\) isometry gate 很远。chern_post.py（[本地路径已脱敏]）
+
+所以如果把缺失部分补零，再用作完整 Heff target，会给 fit 注入错误物理信息；只拟合 112 维 common block 又基本是已有第一 BZ 约束的平移副本，约束不到那 40 个恰好容易在区外爆掉的边界通道。
+
+[计算环境已脱敏] 的 `moirekp` 环境诊断也说明问题不只是 Q-shell 太小：
+
+- 固定 q04 在 \(k=\pm1.5b_1\) 时，顶带已经升到约 \(+9.25\) eV；
+- 把物理模型 Q-shell 从 2 扩到 3 后，反而升到约 \(+198.17\) eV；
+- 当前模型是最高 8 阶的 \(k-Q\) 多项式。MODEL.md（[本地路径已脱敏]）
+
+这说明主因是高阶 Γ 展开对训练域之外的 \(k-Q\) 外推失控；扩大 Q-shell 会把更多这种不可信的大动量状态带进来。
+
+我目前推荐：
+
+1. 如果目标是画能带或计算能量：先把任意 \(k\) fold 回第一 BZ，再求本征值。能量本来就应该周期，不需要 sewing。
+2. 如果还需要区外波函数/矩阵：使用“移动 Q 基组”——fold 到 \(k_0\)，同时返回 reciprocal shift \(G\) 和 sewing/basis relabel；不能强行在固定 q04 基组里构造完整幺正矩阵。
+3. 如果确实要求原始、未 fold 的 \(H(k)\) 在多个 BZ 内稳定：需要真实的扩展动量/Q 数据重新拟合，并限制高阶项或加入稳定性约束；不能只靠第一 BZ Heff 的 sewing 副本。
+
+因此我不建议现在直接给 `fit.kpoints` 加 sewing 生成的第二 BZ 点。首先要明确最终需求：你要的是“区外能带正确、周期”，还是要求“固定 152 维基组下的原始 \(H(k)\) 在第二 BZ 也数值稳定”？这两种设计会很不一样。</pre></section></div></article><article class="transcript-turn" id="transcript-turn-03" data-transcript-turn="03"><div class="transcript-turn-index"><span>TURN</span><strong>03</strong></div><div class="transcript-messages"><section class="transcript-message transcript-researcher"><span class="transcript-role">研究者</span><pre>思考一下。
+
+就按照当前有限的来！</pre></section><section class="transcript-message transcript-agent"><span class="transcript-role">Agent</span><pre>### Annotation 1
+
+对，你的判断是对的：按照当前有限 q04 基组，sewn Hamiltonian 的有效能谱没有炸。
+
+在 `[计算环境已脱敏]` 的 `moirekp` 环境实测：
+
+- 当前 \(S_{b_1}\) 是 \(152\times152\)，rank 112、nullity 40。
+- 完整 \(S H_{\rm eff}S^\dagger\) 有 40 个严格零模，因此完整谱的最高能量是 0 eV——没炸，但这些零模是有限 sewing 产生的伪态。
+- 只在 112 维 sewing image 上对角化，能量稳定在约 \(-7.05\sim-6.16\) eV。
+- image 顶带相对原始 Heff 顶带只差约 \(0.07\sim2.1\) meV。
+
+所以正确比较对象应是
+
+\[
+P_t H_\theta(k+b_1)P_t
+\quad\text{与}\quad
+S_{b_1}H_{\rm eff}(k)S_{b_1}^\dagger,
+\qquad P_t=S_{b_1}S_{b_1}^\dagger,
+\]
+
+而不是直接对完整零填充矩阵取最高 20 条带。
+
+当前 model 在这个 112 维 image 上也没有炸：
+
+| Heff 行 | image top-20 RMS | image top | 完整 raw model 顶带 |
+|---:|---:|---:|---:|
+| 0 | 0.68 meV | −6.1645 eV | −4.2881 eV |
+| 20 | 3.27 meV | −6.2169 eV | +9.2457 eV |
+| 40 | 9.55 meV | −6.2274 eV | +10.3119 eV |
+| 50 | 4.90 meV | −6.1873 eV | +0.2396 eV |
+
+这说明“爆炸”确实来自 sewing image 之外的 40 维补空间。
+
+因此，按照当前有限基组，我认为可以加入一个 masked second-BZ fit loss：
+
+\[
+L_{\rm sew}
+=
+\sum_{k,G}
+\left\|
+P_G H_\theta(k+G)P_G
+-
+S_GH_{\rm eff}(k)S_G^\dagger
+\right\|^2 .
+\]
+
+它有希望把目前 image top-20 的最高约 10 meV RMS 再压低。但它不会让完整 152 维 raw spectrum 不炸，因为那 40 维不在 loss 里。第二 BZ 的物理能带应当定义为 sewing image 的 112 维谱；不能把 40 个零模混入 band loss，也不应该把零填充部分当作真实 Heff target。
+
+我认为这是当前有限基组下最自洽的方向：有限 partial sewing + image-projected fit/evaluation。</pre></section></div></article><article class="transcript-turn" id="transcript-turn-04" data-transcript-turn="04"><div class="transcript-turn-index"><span>TURN</span><strong>04</strong></div><div class="transcript-messages"><section class="transcript-message transcript-researcher"><span class="transcript-role">研究者</span><pre>思考一下，怎么来的。</pre></section><section class="transcript-message transcript-agent"><span class="transcript-role">Agent</span><pre>### Annotation 1
+
+这两个式子来自“无限 Q 基组的平移协变关系”在当前有限 Q 集合上的投影。
+
+设当前有限 Q 集合为 \(\Lambda\)。并非所有 \(Q\in\Lambda\) 平移后仍在集合内，因此先定义可匹配部分：
+
+\[
+\Lambda_s(G)=\{Q\in\Lambda\mid Q+G\in\Lambda\},
+\qquad
+\Lambda_t(G)=\Lambda_s(G)+G.
+\]
+
+有限 sewing matrix 是
+
+\[
+S_G=
+\sum_{\alpha,a,Q\in\Lambda_s(G)}
+|\alpha,a,Q+G\rangle
+\langle\alpha,a,Q|.
+\]
+
+它不是幺正矩阵，而是 partial isometry。对应两个投影算符：
+
+\[
+P_s=S_G^\dagger S_G,
+\qquad
+P_t=S_GS_G^\dagger.
+\]
+
+其中 \(P_s\) 选出能够被平移的 source Q，\(P_t\) 选出平移后落到的 target Q。当前 q04 中两者 rank 都是 112。
+
+模型矩阵元依赖 \(k-Q\)，所以对于能够匹配的 \(Q,Q&#x27;\)：
+
+\[
+H_{Q+G,Q&#x27;+G}(k+G)=H_{Q,Q&#x27;}(k).
+\]
+
+把所有这些矩阵元写成矩阵形式就是
+
+\[
+P_tH(k+G)P_t
+=
+S_GP_sH(k)P_sS_G^\dagger.
+\]
+
+而因为
+
+\[
+S_G=S_GP_s,\qquad S_G^\dagger=P_sS_G^\dagger,
+\]
+
+所以右侧可以简写为
+
+\[
+P_tH(k+G)P_t=S_GH(k)S_G^\dagger.
+\]
+
+这就是第一个公式左侧为什么有 \(P_t\)：我们只能预测 \(k+G\) 处落在 sewing image 内的矩阵块。
+
+现在拟合目标只有第一 BZ 的 \(H_{\rm eff}(k)\)，所以把它通过相同 sewing 搬到 \(k+G\)：
+
+\[
+H_{\rm eff}^{\rm sewn}(k+G)
+=
+S_GH_{\rm eff}(k)S_G^\dagger.
+\]
+
+它已经自动满足
+
+\[
+P_tH_{\rm eff}^{\rm sewn}P_t
+=
+H_{\rm eff}^{\rm sewn},
+\]
+
+因此右侧不需要再显式写 \(P_t\)。最终比较的就是
+
+\[
+P_tH_\theta(k+G)P_t
+\quad\text{与}\quad
+S_GH_{\rm eff}(k)S_G^\dagger.
+\]
+
+不能去掉左边的 \(P_t\)，因为右侧在剩余 40 维补空间里是零；这些零只表示“sewing 没有提供目标”，不表示真实 Hamiltonian 应该为零。
+
+还有一个重要结论。当前 model 在 common block 上已经精确满足平移协变，因此
+
+\[
+\begin{aligned}
+&amp;P_tH_\theta(k+G)P_t
+-S_GH_{\rm eff}(k)S_G^\dagger\\
+&amp;=
+S_G\bigl[H_\theta(k)-H_{\rm eff}(k)\bigr]S_G^\dagger.
+\end{aligned}
+\]
+
+进一步等价于第一 BZ 的 matched source block：
+
+\[
+\left\|
+P_tH_\theta(k+G)P_t-S_GH_{\rm eff}(k)S_G^\dagger
+\right\|_F
+=
+\left\|
+P_s[H_\theta(k)-H_{\rm eff}(k)]P_s
+\right\|_F.
+\]
+
+所以这种 second-BZ loss 并不是新的独立数据，本质上是在重新加权第一 BZ 的 112 维 matched block。它可以改善 sewing-image 内的拟合，但无法约束造成完整谱爆炸的那 40 维补空间。</pre></section></div></article><article class="transcript-turn" id="transcript-turn-05" data-transcript-turn="05"><div class="transcript-turn-index"><span>TURN</span><strong>05</strong></div><div class="transcript-messages"><section class="transcript-message transcript-researcher"><span class="transcript-role">研究者</span><pre>那我是不是可以直接tapw算能带的时候GMKG的最后一一个G直接变成（b1,0）不就好了，这样啥代码也不用改</pre></section><section class="transcript-message transcript-agent"><span class="transcript-role">Agent</span><pre>对，可以，而且这比在有限 \(Q\) 空间里加 sewing loss更有效：TAPW 直接给出第二布里渊区的 \(H_{\mathrm{eff}}(k)\)，能够约束 sewing 投影遗漏的补空间。源代码不用改，只需改配置并重新生成数据。
+
+但末点不能继续叫 `G`，否则首点也会被一起改掉；应新增标签：
+
+```yaml
+kpath:
+  labels: [G, M, K, G1]
+  points_per_segment: 20
+  coordinates:
+    G:  [0.0, 0.0]
+    M:  [0.5, 0.0]
+    K:  [0.3333333333, 0.3333333333]
+    G1: [1.0, 0.0]   # Gamma + b1
+```
+
+这里用的是倒格矢分数坐标，所以 \(b_1\) 写成 `[1.0, 0.0]`。TAPW 和 KP 两份配置的 `bands.kpath` 都要这样改；`symmetry.representation.points.G` 仍保持 `[0,0]`。
+
+仍然是61个点：
+
+- 0：\(G\)
+- 20：\(M\)
+- 40：\(K\)
+- 50：\(K\rightarrow G_1\) 的中点，已经在第一 BZ 外
+- 60：\(G+b_1\)
+
+因此当前 `fit.kpoints: [0,40,50]` 会自动把一个第二 BZ 点加入加权，但不会加权 \(G+b_1\) 本身；若要约束它，应把60也加入。
+
+不过我更推荐保留原始路径，再追加一段：
+
+```yaml
+labels: [G, M, K, G, G1]
+```
+
+这样既保留原来的第一 BZ 对照，又新增严格沿 \(0\rightarrow b_1\) 的数据，最直接针对你看到的 \((-1.5b_1,1.5b_1)\) 爆炸。代价只是点数从61变81，仍然不需要改代码。之后重跑 TAPW bands → `kp project` → `kp symm` → `kp model` 即可。</pre></section></div></article><article class="transcript-turn" id="transcript-turn-06" data-transcript-turn="06"><div class="transcript-turn-index"><span>TURN</span><strong>06</strong></div><div class="transcript-messages"><section class="transcript-message transcript-researcher"><span class="transcript-role">研究者</span><pre>直接用GAMG1跑一下[本地路径已脱敏]，还在这里面注意好目录。跑完再跑model。然后再看看(-1.5b1,0),(1.5b1,0)model的能带结果好没好。</pre></section><section class="transcript-message transcript-agent"><span class="transcript-role">Agent</span><pre>跑完了。结论：明显改善，但没有根治，模型在 \(\pm1.5b_1\) 仍然炸。
+
+所有计算均在 `[计算环境已脱敏]`、`moirekp` 环境完成，没有额外设置线程或进程上限。运行的是 `G–M–K–G1`，\(G_1=[1,0]\)。
+
+| \(t\), \(k=t b_1\) | 原模型最高带 | 新模型最高带 |
+|---:|---:|---:|
+| -1.5 | +9.246 eV | -2.131 eV |
+| -1.0 | -4.288 eV | -5.996 eV |
+| -0.5 | -6.215 eV | -6.215 eV |
+| 0 | -6.164 eV | -6.164 eV |
+| +1.0 | -4.288 eV | -5.996 eV |
+| +1.5 | +9.246 eV | -2.131 eV |
+
+顶部20带的第二 BZ 周期性误差：
+
+- 原模型：RMS 2.453 eV，最大15.461 eV
+- 新模型：RMS 0.601 eV，最大4.083 eV
+
+TAPW 本身没有炸：\(G\) 与 \(G+b_1\) 顶部能带最大只差约0.24 meV。问题仍在模型拟合。当前加权点是 `[0,40,50]`，所以 \(G_1\) 的60号点只有普通权重；新模型在 \(G_1\) 对 Heff 的顶部20带误差仍为 RMS 70.7 meV、最大169.4 meV。到 \(1.5b_1\) 又属于训练范围外的八阶外推，因此仍然上翘约4 eV。
+
+[图表已脱敏]
+
+配置在 TAPW YAML（[本地路径已脱敏]） 和 KP YAML（[本地路径已脱敏]）。详细数组保存在 before_after_extended_b1.npz（[本地路径已脱敏]）。
+
+所以这个办法方向正确、能压住很多，但目前还不能说第二 BZ 已经好了。下一步最小改动应当是把60号 \(G_1\) 明确加入加权点。</pre></section></div></article><article class="transcript-turn" id="transcript-turn-07" data-transcript-turn="07"><div class="transcript-turn-index"><span>TURN</span><strong>07</strong></div><div class="transcript-messages"><section class="transcript-message transcript-researcher"><span class="transcript-role">研究者</span><pre>给我看看能带吧。加上58，60两个点再看看结果。</pre></section><section class="transcript-message transcript-agent"><span class="transcript-role">Agent</span><pre>加上58、60后明显更好了，尤其 \(k=\pm b_1\) 已基本修正；但到 \(\pm1.5b_1\) 仍有约1.465 eV的上翘。
+
+[图表已脱敏]
+
+| 模型 | \(t=\pm1\) 最高带 | \(t=\pm1.5\) 最高带 | 周期性 RMS / Max |
+|---|---:|---:|---:|
+| 原 `G-M-K-G` | -4.288 eV | +9.246 eV | 2453 / 15461 meV |
+| `G-M-K-G1` | -5.996 eV | -2.131 eV | 601 / 4083 meV |
+| 加权58、60 | **-6.16468 eV** | **-4.75016 eV** | **141 / 1465 meV** |
+
+标准 `G-M-K-G1` 路径的顶部10带 RMS 也从165.6 meV降到了2.63 meV。当前配置是：
+
+```yaml
+kpoints: [0, 40, 50, 58, 60]
+```
+
+见 KP配置（[本地路径已脱敏]）、标准能带对比（[本地路径已脱敏]） 和 三组数据（[本地路径已脱敏]）。
+
+结论是：58、60把 \(G+b_1\) 附近修得很好，但它们只能锚定到 \(b_1\)；\(1.5b_1\) 仍是八阶多项式外推，所以还会继续上翘。</pre></section></div></article><article class="transcript-turn" id="transcript-turn-08" data-transcript-turn="08"><div class="transcript-turn-index"><span>TURN</span><strong>08</strong></div><div class="transcript-messages"><section class="transcript-message transcript-researcher"><span class="transcript-role">研究者</span><pre>如果用q05呢？还是GAMG？会怎么样？不用G1?你试试</pre></section><section class="transcript-message transcript-agent"><span class="transcript-role">Agent</span><pre>试完了：q05 仍用原始 `G–M–K–G`、不用 `G1`，结果不但没有改善，扩展区反而略差。
+
+[图表已脱敏]
+
+| 模型 | 维数 | \(t=\pm1\) 最高带 | \(t=\pm1.5\) 最高带 | 周期性 RMS / Max |
+|---|---:|---:|---:|---:|
+| q04 `G-M-K-G` | 152 | -4.288 eV | +9.246 eV | 2.453 / 15.461 eV |
+| q05 `G-M-K-G` | 248 | -3.747 eV | +9.403 eV | 3.356 / 15.618 eV |
+| q04 `G-M-K-G1` + 58/60 | 152 | -6.1647 eV | -4.750 eV | 0.141 / 1.465 eV |
+
+q05 在第一 BZ 内仍然拟合得可以：顶部10带 RMS 6.69 meV；但因为训练数据仍完全位于第一 BZ，扩大 \(Q\) 截断并不能限制八阶多项式的外推。额外 \(Q\) 点反而带来更多会在区外快速上升的支路，所以周期性误差变大。
+
+比较时已处理 q05 倒格基排序变化：物理 \(b_1\) 从共同的 \(M=b_1/2\) 恢复，并非误用了 q05 导出矩阵的第一行。
+
+配置与本地结果链接已脱敏。</pre></section></div></article><article class="transcript-turn" id="transcript-turn-09" data-transcript-turn="09"><div class="transcript-turn-index"><span>TURN</span><strong>09</strong></div><div class="transcript-messages"><section class="transcript-message transcript-researcher"><span class="transcript-role">研究者</span><pre>你在q04的K,M附近多加两个点再拟合试试</pre></section><section class="transcript-message transcript-agent"><span class="transcript-role">Agent</span><pre>试完了。加入的是：
+
+- row 19：\((0.475,0)\)，紧邻 \(M=20\)
+- row 39：\((0.34167,0.31667)\)，紧邻 \(K=40\)
+
+当前加权点为 `[0,19,39,40,50,58,60]`。
+
+[图表已脱敏]
+
+局部确实改善：
+
+| 位置 | 加入前 RMS | 加入后 RMS |
+|---|---:|---:|
+| row 19，M附近 | 1.154 meV | **1.039 meV** |
+| row 20，M | 1.094 meV | **0.964 meV** |
+| row 39，K附近 | 4.329 meV | **3.858 meV** |
+| row 40，K | 4.509 meV | **4.065 meV** |
+
+但整体和第二 BZ 略微变差：
+
+| 指标 | 原 `[0,40,50,58,60]` | 加19、39后 |
+|---|---:|---:|
+| 路径顶部10带 RMS | **2.631 meV** | 3.263 meV |
+| \(t=\pm1.5\) 最高带 | **-4.750 eV** | -4.604 eV |
+| 周期性 RMS | **141.4 meV** | 158.9 meV |
+| 周期性最大误差 | **1.465 eV** | 1.611 eV |
+| row 60 RMS | **12.22 meV** | 14.58 meV |
+
+所以这是权重重新分配：M/K附近修好了一点，但牺牲了 G1 端和区外稳定性。若目标主要是防止第二 BZ 爆炸，之前的 `[0,40,50,58,60]` 更好。
+
+当前结果见 配置（[本地路径已脱敏]）、标准能带（[本地路径已脱敏]） 和 对比数据（[本地路径已脱敏]）。</pre></section></div></article><article class="transcript-turn" id="transcript-turn-10" data-transcript-turn="10"><div class="transcript-turn-index"><span>TURN</span><strong>10</strong></div><div class="transcript-messages"><section class="transcript-message transcript-researcher"><span class="transcript-role">研究者</span><pre>我让你用GMKG</pre></section><section class="transcript-message transcript-agent"><span class="transcript-role">Agent</span><pre>刚才是我路径搞错了。这次已经按真正的 q04 `G–M–K–G` 全流程重跑，末点验证为 `[0,0]`，没有使用 G1。
+
+加权点：
+
+```yaml
+[0, 19, 39, 40, 50]
+```
+
+[图表已脱敏]
+
+| GMKG模型 | \(t=\pm1\) 最高带 | \(t=\pm1.5\) 最高带 | 周期性 RMS / Max |
+|---|---:|---:|---:|
+| 原 `[0,40,50]` | -4.288 eV | +9.246 eV | 2.453 / 15.461 eV |
+| 加19、39 | -3.868 eV | +11.654 eV | 2.876 / 17.868 eV |
+
+第一 BZ 内拟合很好，顶部10带 RMS 为1.458 meV、最大3.076 meV；但区外爆炸反而更严重。因此，在 GMKG 内增加 M/K 附近的拟合点不能改善第二 BZ 外推，甚至会把高阶外推系数推得更大。
+
+正确实验使用独立目录，没有混入 G1 数据：
+
+- TAPW GMKG配置（[本地路径已脱敏]）
+- KP GMKG配置（[本地路径已脱敏]）
+- 标准能带（[本地路径已脱敏]）
+- 扩展区数据（[本地路径已脱敏]）</pre></section></div></article><article class="transcript-turn" id="transcript-turn-11" data-transcript-turn="11"><div class="transcript-turn-index"><span>TURN</span><strong>11</strong></div><div class="transcript-messages"><section class="transcript-message transcript-researcher"><span class="transcript-role">研究者</span><pre>不加权会不炸吗？你试过吗？</pre></section><section class="transcript-message transcript-agent"><span class="transcript-role">Agent</span><pre>试过了。结论是：**不加权基本消除了灾难性的正能量爆炸，但还没有完全解决跨布里渊区外推问题。**
+
+这里“不加权”指 `one_sided_weight=0`、`two_sided_weight=0`；全路径的基础 loss 仍保留。
+
+| q04 GMKG 拟合 | \(t=\pm1\) 顶带 | \(t=\pm1.5\) 顶带 | Top-20 周期性 RMS / Max |
+|---|---:|---:|---:|
+| 原加权 `[0,40,50]` | −4.288 eV | **+9.246 eV** | 2.453 / 15.461 eV |
+| **不加权 `[0,40,50]`** | **−6.17187 eV** | −4.370 eV | **0.187 / 1.850 eV** |
+| 加权并增加 M/K 邻点 | −3.868 eV | **+11.654 eV** | 2.876 / 17.868 eV |
+
+不加权时：
+
+- \(k=\pm b_1\) 的顶带与 \(k=0\) 只差约 **0.026 meV**，这一点非常好。
+- \(k=\pm1.5b_1\) 没有再飞到正十几 eV，但相对折回后的 \(\pm0.5b_1\) 仍偏高约 **1.85 eV**，所以严格说还是“向上翘”，只是没发生灾难性爆炸。
+- 第一布里渊区 Top-10 拟合 RMS 为 **4.647 meV**，比加权拟合差一些。这说明大权重改善了区内局部拟合，却把高阶多项式系数推得过猛，导致区外外推失控。
+
+[图表已脱敏]
+
+全部是在 `[计算环境已脱敏]` 的 `moirekp` 环境跑的，没有设置线程或进程上限。
+
+相关文件与本地链接已脱敏。</pre></section></div></article><article class="transcript-turn" id="transcript-turn-12" data-transcript-turn="12"><div class="transcript-turn-index"><span>TURN</span><strong>12</strong></div><div class="transcript-messages"><section class="transcript-message transcript-researcher"><span class="transcript-role">研究者</span><pre>那你能判断出，加权为什么搞炸了吗？哪里出问题了？
+
+[计算环境已脱敏]都能跑</pre></section><section class="transcript-message transcript-agent"><span class="transcript-role">Agent</span><pre>能判断出来。根因不是 SEW matrix，也不是代码把权重重复平方了；而是：
+
+&gt; **只在 3 个第一布里渊区点上，对低能子空间施加了极强权重，再用无正则的 8 阶多项式外推。高阶项在拟合点附近互相抵消，出了拟合区以后迅速放大。**
+
+当前实际拟合目标是
+
+\[
+L=\sum_{k_i\in[0,40,50]}
+\left[
+\frac{\|\Delta H\|_F^2}{152^2}
++100\frac{\|\Delta H U\|_F^2}{152\times20}
++300\frac{\|U^\dagger\Delta H U\|_F^2}{20^2}
+\right],
+\]
+
+其中 \(U\) 是目标 Hamiltonian 的顶端 20 条带。
+
+有个关键点：`full=1` 指的是这三个拟合点上的“完整矩阵 loss”，**不是整个 GMKG 路径**。代码确实先只选取用户给出的 `[0,40,50]`：pipeline.py（[本地路径已脱敏]）。
+
+权重实现本身是正确的，残差行乘的是 \(\sqrt{w}\)，不是 \(w\)：response_basis.py（[本地路径已脱敏]）。但由于归一化方式：
+
+- low-low 矩阵元相对普通矩阵元的有效权重约为 **18089 倍**
+- 落入低能子空间列的矩阵元约为 **761 倍**
+
+所以拟合器会主动牺牲其余 Hamiltonian，换取这 20 条带在三个点上更准。实际结果也是：
+
+- one-sided 残差降低约 **6.1 倍**
+- two-sided 残差降低约 **164 倍**
+- 但完整矩阵残差反而增大约 **3.4 倍**
+
+消融结果非常清楚：
+
+| 权重 | 条件数 | 系数 L2 | \(E_{\rm top}(1.5b_1)\) |
+|---|---:|---:|---:|
+| `0/0` | 32.2 | \(3.27\times10^4\) | −4.370 eV |
+| `100/0` | 214.6 | \(1.39\times10^5\) | **+4.541 eV** |
+| `0/300` | 1383.8 | \(5.49\times10^4\) | **+0.515 eV** |
+| `100/300` | 819.0 | \(1.76\times10^5\) | **+9.246 eV** |
+
+因此：
+
+- **one-sided 是实际爆带的主要驱动力**
+- two-sided 也会爆，并且让拟合矩阵最病态
+- 两者同时使用时，高阶系数组合进一步叠加
+
+逐阶分解也定位到了具体阶数。在 \(1.5b_1\) 的爆炸顶态上：
+
+\[
+E^{(3)}=+2.21,\quad
+E^{(4)}=+5.20,\quad
+E^{(5)}=+5.40,\quad
+E^{(6)}=+2.70\ {\rm eV}.
+\]
+
+截断到 3 阶时顶能还是 −4.58 eV；加入 4 阶后立刻变成 +0.49 eV，加入 5、6 阶后分别达到 +5.85、+8.54 eV。**真正把能带推炸的是 4、5 阶，6 阶次之。**
+
+[图表已脱敏]
+
+为什么区内没事、区外才炸也能定量解释：拟合点最大无量纲半径只有 \(0.577\)，却评估到 \(1.5\)。因此 4、5、6、8 阶外推分别被放大约 46、118、308、2076 倍。模型又没有施加
+
+\[
+H(k+b_1)\sim S_{b_1}H(k)S_{b_1}^\dagger
+\]
+
+这样的周期/SEW 约束，所以区外完全可以自由发散。
+
+所以“哪里出问题”的准确结论是：**不是权重代码写错，而是 100/300 对当前归一化来说过强，加上仅三个区内点、8 阶、零 ridge、无跨区周期约束，产生了高阶多项式外推病。**
+
+下一步最值得测的是较小权重如 `1/3`、`10/30`，以及对 4 阶以上加 ridge/阶次惩罚；从根本上解决则需要把 \(k+b_1\) 的 sewing/周期关系直接加入拟合约束。所有消融分别在 `[计算环境已脱敏]` 的 `moirekp` 环境完成，没有设置线程或进程上限。诊断数据在 diagnostic.json（[本地路径已脱敏]）。</pre></section></div></article><article class="transcript-turn" id="transcript-turn-13" data-transcript-turn="13"><div class="transcript-turn-index"><span>TURN</span><strong>13</strong></div><div class="transcript-messages"><section class="transcript-message transcript-researcher"><span class="transcript-role">研究者</span><pre>你可以搞一个新的分支测试。立即开始，不要搞一堆文档，审核，直接开始做核心部分，在[计算环境已脱敏]都可以测试</pre></section><section class="transcript-message transcript-agent"><span class="transcript-role">Agent</span><pre>已在新分支 `[测试分支已脱敏]` 完成核心实现和 ZrS₂ GMKG 实测。
+
+### Annotation 1：怎么加入 sewing 约束
+
+实际加入的是目标约束：
+
+\[
+\mathcal L_{\rm sew}
+=\sum_{G,k}\frac{w_G}{N_G}
+\left\|
+P_GH_{\rm model}(k+G)P_G
+-S_GH_{\rm eff}(k)S_G^\dagger
+\right\|_F^2 .
+\]
+
+其中 \(S_G[t,s]=1\) 对应同层、同轨道且 \(Q_t=Q_s+G\)。有限 Q 截断下它是部分 sewing matrix；ZrS₂ q04 每个方向有 112/152 个基矢重叠。
+
+关键是右边使用 TAPW 的 \(H_{\rm eff}(k)\)，而不是 `model(k)`，否则模型自身的 \(k-Q\) 结构可能自动满足关系，不能提供新的拟合信息。实现位于 core.py（[本地路径已脱敏]） 和 response_basis.py（[本地路径已脱敏]）。
+
+### Annotation 2：怎么加高阶 ridge
+
+使用归一化响应幅度 \(\theta_j=c_j\,s_j\)，而不是裸系数：
+
+\[
+\mathcal L_{\rm ridge}
+=\sum_j\lambda_{d_j}|\theta_j|^2,\qquad
+\lambda_d=\lambda_4(d-3)^2,\quad d\ge4 .
+\]
+
+推荐配置：
+
+```yaml
+model:
+  fit:
+    degree_regularization:
+      start_degree: 4
+      strength: 1.0e-6
+      power: 2.0
+    reciprocal_sewing:
+      weight: 100.0
+      shifts: [[1, 0], [-1, 0]]
+```
+
+### ZrS₂ GMKG 结果
+
+| 模型 | \(E_{\rm top}(b_1)\) | \(E_{\rm top}(1.5b_1)\) | 区内顶10带 RMS |
+|---|---:|---:|---:|
+| 当前加权 100/300 | -4.288 eV | +9.246 eV | — |
+| ridge-only | -6.101 eV | -4.948 eV | 1.37 meV |
+| sewing-only，权重1 | -5.816 eV | -1.649 eV | 1.25 meV |
+| ridge+sewing，权重30 | -6.166 eV | -5.947 eV | 1.48 meV |
+| ridge+sewing，权重100 | **-6.166 eV** | **-6.213 eV** | **1.76 meV** |
+
+权重100基本恢复了扩展区周期性；条件数从当前加权的 819 降至 232，4阶以上响应幅度从 59.34 降至 19.15。代价是全路径顶20带未对齐 RMS 为 12.7 meV，因此权重30可以作为更保守的折中。
+
+[图表已脱敏]
+
+实现文件与本地链接已脱敏。</pre></section></div></article><article class="transcript-turn" id="transcript-turn-14" data-transcript-turn="14"><div class="transcript-turn-index"><span>TURN</span><strong>14</strong></div><div class="transcript-messages"><section class="transcript-message transcript-researcher"><span class="transcript-role">研究者</span><pre>加到2b1呢？加到3b1呢？你不仅要给我看(-4b1,0)到(4b1,0)的能带，还要给我看看GMKG和heff的对比。
+
+快点啊！你在干什么？？赶紧给我结果，不需要交互式</pre></section><section class="transcript-message transcript-agent"><span class="transcript-role">Agent</span><pre>结果出来了：把 sewing 累计加到 \(2b_1\)、\(3b_1\) 不但没有改善，反而炸得更严重。
+
+[图表已脱敏]
+
+上排是 \((-4b_1,0)\rightarrow(4b_1,0)\)，下排是 GMKG 上 model（蓝实线）与 Heff（黑虚线）。
+
+- 只加 \(\pm b_1\)：\(E_{\rm top}(2,3,4b_1)=-4.218,\ 15.658,\ 100.831\) eV
+- 加到 \(\pm2b_1\)：\(-2.979,\ 23.642,\ 136.113\) eV
+- 加到 \(\pm3b_1\)：\(-2.452,\ 27.572,\ 155.097\) eV
+
+GMKG 的 top-10 RMS 分别为 \(1.63,\ 1.73,\ 1.99\) meV，说明第一布里渊区拟合仍然很好，但扩展区越来越差。
+
+根因是有限 \(Q\) 截断：\(\pm b_1,\pm2b_1,\pm3b_1\) 的 sewing 重叠基矢数从 112 降到 72、32（总维数152）。约束只作用于越来越小的重叠子块，真正爆炸的边界 \(Q\) 态没有被约束；继续增加 shift 反而把高阶多项式系数推得更坏。因此仅靠加入 \(2b_1/3b_1\) sewing 约束解决不了，需要扩大 \(Q\) shell，或者把 \(k\) 折回第一布里渊区再使用 sewing。</pre></section></div></article><article class="transcript-turn" id="transcript-turn-15" data-transcript-turn="15"><div class="transcript-turn-index"><span>TURN</span><strong>15</strong></div><div class="transcript-messages"><section class="transcript-message transcript-researcher"><span class="transcript-role">研究者</span><pre>什么意思？</pre></section><section class="transcript-message transcript-agent"><span class="transcript-role">Agent</span><pre>### Annotation 1
+
+“把 \(k\) 折回第一布里渊区”是指：对于区外的点，不直接计算高阶多项式 \(H_{\mathrm{eff}}(k)\)，而是减去一个倒格矢，把它搬回模型可靠的区域。
+
+例如沿 \(b_1\)：
+
+\[
+k=t b_1,\qquad
+\bar k=(t-n)b_1,\qquad
+t-n\in[-0.5,0.5),
+\]
+
+其中 \(n\) 是整数，\(G=n b_1\)。于是
+
+\[
+k=\bar k+G.
+\]
+
+理论上完整基组满足
+
+\[
+H(\bar k+G)=S_GH(\bar k)S_G^\dagger.
+\]
+
+因此：
+
+- 只看能量时，直接用
+  \[
+  E_m(k)=E_m(\bar k),
+  \]
+  即能带每隔 \(b_1\) 周期重复。
+- 需要波函数、轨道成分或谱权重时，再用 sewing matrix：
+  \[
+  |\psi_m(k)\rangle=S_G|\psi_m(\bar k)\rangle.
+  \]
+
+比如：
+
+\[
+1.3b_1\rightarrow0.3b_1,\qquad
+2.8b_1\rightarrow-0.2b_1.
+\]
+
+现在“炸掉”是因为我们直接把多项式模型外推到 \(2b_1、3b_1、4b_1\)。折回方法则始终只在 \([-0.5b_1,0.5b_1]\) 内计算，所以不会出现 100–150 eV 的多项式发散。
+
+但这相当于按倒格矢周期延拓，不是在改善区外多项式本身。有限 \(Q\) 基底下 \(S_G\) 也不是完整酉矩阵，因此能量可以安全周期复制，若要可靠的区外波函数和谱权重，仍需要扩大 \(Q\) shell。</pre></section></div></article><article class="transcript-turn" id="transcript-turn-16" data-transcript-turn="16"><div class="transcript-turn-index"><span>TURN</span><strong>16</strong></div><div class="transcript-messages"><section class="transcript-message transcript-researcher"><span class="transcript-role">研究者</span><pre>那现在的代码不是可以非线性吗？把能量加进来算loss吗？</pre></section><section class="transcript-message transcript-agent"><span class="transcript-role">Agent</span><pre>可以，而且这条路比继续堆 sewing matrix 更直接。
+
+当前代码已经支持 nonlinear energy loss，流程是：
+
+\[
+L=L_{\text{matrix}}+
+w_E\sum_{k,n}
+\left[\varepsilon_n^{\text{model}}(k)-
+\varepsilon_n^{\text{target}}(k)\right]^2 ,
+\]
+
+并用 Hellmann–Feynman 公式计算解析梯度：
+
+\[
+\frac{\partial\varepsilon_n}{\partial c_j}
+=\langle u_n|\partial H/\partial c_j|u_n\rangle .
+\]
+
+配置接口就是：
+
+```yaml
+fit:
+  method: nonlinear
+  kpoints: [...]
+  band_kpoints: all
+  bands: 10
+  band_loss_weight: 1.0
+  max_steps: 50
+```
+
+但刚才 \(\pm b_1,\pm2b_1,\pm3b_1\) 三组实验用的是 `method: linear`，所以能量根本没有进入 loss，只有矩阵元、ridge 和 sewing loss。
+
+现有 nonlinear 还有两个限制：
+
+- `band_kpoints` 只能选择已有 Heff 数据中的点，不能直接写任意 \(k+2b_1\)、\(k+3b_1\)。
+- nonlinear 阶段目前没有重新加入我们新增的 ridge/sewing loss，优化后可能破坏线性阶段的约束。
+
+真正适合这个问题的 loss 应该是：
+
+\[
+L=L_{\rm Heff}^{\rm 1BZ}
++\lambda_{\rm ridge}L_{\rm ridge}
++\lambda_{\rm sew}L_{\rm sew}
++\lambda_E
+\sum_{k\in{\rm 1BZ},G,n}
+\left[
+\varepsilon_n^{\rm model}(k+G)
+-\varepsilon_n^{\rm Heff}(k)
+\right]^2 .
+\]
+
+其中 \(G=\pm b_1,\pm2b_1,\pm3b_1\)。这样直接要求区外 top-10 能量等于折回第一布里渊区后的 Heff 能量，能约束造成爆炸的完整 152 维谱，不再受 sewing 重叠子块只有 112/72/32 维的限制。
+
+而且不能只加 \(b_1,2b_1,3b_1\) 三个端点，最好把 \((-4b_1,4b_1)\) 上的一批点都加入，否则高阶多项式仍可能在采样点之间炸掉。这个方向值得直接做。</pre></section></div></article><article class="transcript-turn" id="transcript-turn-17" data-transcript-turn="17"><div class="transcript-turn-index"><span>TURN</span><strong>17</strong></div><div class="transcript-messages"><section class="transcript-message transcript-researcher"><span class="transcript-role">研究者</span><pre>你试一下吧。</pre></section><section class="transcript-message transcript-agent"><span class="transcript-role">Agent</span><pre>试完了。结论：把区外能量直接加入 nonlinear loss 明显有效，但还不能做到严格周期。
+
+[图表已脱敏]
+
+关键结果：
+
+- 原线性模型：\(E_{\rm top}(4b_1)=100.83\) eV
+- 能量约束到 \(\pm2b_1\)：\(E_{\rm top}(2,3,4b_1)=-6.117,-5.094,4.923\) eV
+- 约束到 \(\pm3b_1\)：\(-5.897,-2.369,14.096\) eV
+- 约束到 \(\pm4b_1,\ w_E=1\)：\(-5.962,-5.005,-1.610\) eV
+- 增强到 \(w_E=10\)：\(-6.021,-4.853,-1.083\) eV，反而没有继续改善 \(4b_1\)
+
+GMKG top-10 RMS 从原来的 \(1.63\) meV，变为：
+
+- \(\pm2b_1\)：\(1.87\) meV
+- \(\pm3b_1\)：\(2.01\) meV
+- \(\pm4b_1,w_E=1\)：\(1.98\) meV
+- \(\pm4b_1,w_E=10\)：\(2.20\) meV
+
+所以能量 loss 确实把“100 eV 爆炸”压下来了，而且第一布里渊区只损失约 \(0.3\) meV RMS；但优化是非凸的，简单增加范围或权重并不单调变好。目前最好的是“约束到 \(\pm4b_1,\ w_E=1\)”。
+
+代码已经加入 pipeline.py（[本地路径已脱敏]），保留了原 matrix、ridge、sewing loss。相关测试共 `552 passed`。所有数值任务均在 [计算环境已脱敏] 的 `moirekp` 环境运行，没有设置线程或进程上限。</pre></section></div></article></div></details></section><section class="section responsibility-section" aria-labelledby="responsibility-title"><div class="section-heading"><p class="eyebrow">HUMAN IN THE LOOP</p><h2 id="responsibility-title">研究者仍然负责什么</h2></div><div class="responsibility-grid"><article><span>01</span><h3>提出物理假设</h3><p>把“区外爆带”转化为有限 Q sewing、训练范围、损失权重与高阶外推之间的可检验问题。</p></article><article><span>02</span><h3>发现实验跑偏</h3><p>识别 G–M–K–G₁ 与真正 GMKG 被混用，要求隔离数据并完整重跑。</p></article><article><span>03</span><h3>定义验收标准</h3><p>不能只看第一 BZ RMS；必须同时看宽区谱、周期误差、GMKG–Heff 与负对照。</p></article><article><span>04</span><h3>限制最终结论</h3><p>区分“灾难性发散消失”“外推改善”和“严格周期恢复”，不让数值进步变成过度宣称。</p></article></div></section><aside class="redaction-note" aria-label="脱敏说明"><span>公开说明</span><p>本页由原始 Codex 任务整理，经过脱敏和压缩；保留了问题顺序、研究者纠错、被否定的假设与关键数值结论。</p></aside><footer class="site-footer"><div><span class="brand-mark">KP</span><p>Agent-assisted research, researcher-owned conclusions.</p></div><p>只读公开记录 · 公式、代码与数值交叉验证</p></footer></main></body></html>

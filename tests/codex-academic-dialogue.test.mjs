@@ -40,6 +40,10 @@ test("exports a standalone academic dialogue page", async () => {
     /<img(?=[^>]*\bsrc="\/codex-academic-dialogue\/og\.png")(?=[^>]*\bwidth="1730")(?=[^>]*\bheight="909")(?=[^>]*\balt="ZrS₂ 高阶 k·p 模型跨布里渊区爆带封面")[^>]*>/i,
   );
   assert.match(
+    body,
+    /<section class="hero-stage" id="top">[\s\S]*?<h1 class="sr-only">ZrS₂ 高阶 k·p 模型跨布里渊区爆带<\/h1>[\s\S]*?<div class="hero-summary">/i,
+  );
+  assert.match(
     html,
     /rel="canonical" href="https:\/\/zhangyan31415\.github\.io\/codex-academic-dialogue\/"/,
   );
@@ -56,7 +60,8 @@ test("ships every static asset needed by the page", async () => {
   const cssFiles = (await readdir(cssRoot)).filter((name) => name.endsWith(".css"));
   assert.equal(cssFiles.length, 1);
   const css = await readFile(new URL(cssFiles[0], cssRoot), "utf8");
-  assert.match(css, /--paper:#f3f0e7/);
+  assert.match(css, /--canvas:#f4f6f9/);
+  assert.doesNotMatch(css, /--paper:#f3f0e7/);
 });
 
 test("does not publish operational details or credentials", async () => {

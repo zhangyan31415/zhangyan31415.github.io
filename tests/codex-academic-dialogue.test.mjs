@@ -14,6 +14,7 @@ async function readRequired(path) {
 
 test("exports a standalone academic dialogue page", async () => {
   const html = await readRequired("index.html");
+  const head = html.match(/<head>([\s\S]*?)<\/head>/i)?.[1] ?? "";
 
   assert.match(html, /ZrS₂ 高阶 k·p 模型跨布里渊区爆带/);
   assert.match(html, /我让你用 GMKG/);
@@ -21,16 +22,25 @@ test("exports a standalone academic dialogue page", async () => {
   assert.match(html, /−6\.213 eV/);
   assert.match(html, /经过脱敏和压缩/);
   assert.match(html, /href="\/codex-academic-dialogue\/assets\/css\//);
+  assert.match(head, /<title>ZrS₂ 高阶 k·p 模型跨布里渊区爆带/);
+  assert.match(head, /<meta name="description"/);
   assert.match(
-    html,
+    head,
     /property="og:image" content="https:\/\/zhangyan31415\.github\.io\/codex-academic-dialogue\/og\.png"/,
   );
+  assert.match(
+    head,
+    /property="og:url" content="https:\/\/zhangyan31415\.github\.io\/codex-academic-dialogue\/"/,
+  );
+  assert.match(head, /name="twitter:card" content="summary_large_image"/);
+  assert.match(head, /href="\/codex-academic-dialogue\/favicon\.svg"/);
   assert.match(
     html,
     /rel="canonical" href="https:\/\/zhangyan31415\.github\.io\/codex-academic-dialogue\/"/,
   );
   assert.doesNotMatch(html, /<script\b/i);
   assert.doesNotMatch(html, /localhost|codex-preview/i);
+  assert.doesNotMatch(html, /<div hidden id="S:0">/i);
 });
 
 test("ships every static asset needed by the page", async () => {
@@ -45,7 +55,21 @@ test("ships every static asset needed by the page", async () => {
 });
 
 test("does not publish operational details or credentials", async () => {
-  const html = await readRequired("index.html");
+  async function collectTextFiles(root) {
+    const entries = await readdir(root, { withFileTypes: true });
+    const files = [];
+    for (const entry of entries) {
+      const child = new URL(entry.name + (entry.isDirectory() ? "/" : ""), root);
+      if (entry.isDirectory()) files.push(...(await collectTextFiles(child)));
+      if (/\.(?:html|css|svg)$/i.test(entry.name)) files.push(child);
+    }
+    return files;
+  }
+
+  const textFiles = await collectTextFiles(pageRoot);
+  const publicText = (
+    await Promise.all(textFiles.map((file) => readFile(file, "utf8")))
+  ).join("\n");
   const forbidden = [
     /\/data\//i,
     /\/Users\//i,
@@ -60,6 +84,6 @@ test("does not publish operational details or credentials", async () => {
   ];
 
   for (const pattern of forbidden) {
-    assert.doesNotMatch(html, pattern);
+    assert.doesNotMatch(publicText, pattern);
   }
 });

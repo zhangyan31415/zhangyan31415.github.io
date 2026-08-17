@@ -60,11 +60,19 @@ test("ships every static asset needed by the page", async () => {
   const cssFiles = (await readdir(cssRoot)).filter((name) => name.endsWith(".css"));
   assert.equal(cssFiles.length, 1);
   const css = await readFile(new URL(cssFiles[0], cssRoot), "utf8");
-  const heroSummary = css.match(/\.hero-summary\{([^}]*)\}/)?.[1] ?? "";
+  const heroSummaryBlocks = [...css.matchAll(/\.hero-summary\{([^}]*)\}/g)].map(
+    (match) => match[1],
+  );
   assert.match(css, /--canvas:#f4f6f9/);
   assert.doesNotMatch(css, /--paper:#f3f0e7/);
-  assert.match(heroSummary, /margin:18px auto 0/);
-  assert.doesNotMatch(heroSummary, /margin:-/);
+  assert.ok(heroSummaryBlocks.length >= 3);
+  for (const block of heroSummaryBlocks) {
+    assert.doesNotMatch(block, /margin:-/);
+    assert.doesNotMatch(block, /width:calc/);
+    if (/margin(?:-top)?:/.test(block)) {
+      assert.match(block, /margin(?:-top)?:18px/);
+    }
+  }
 });
 
 test("does not publish operational details or credentials", async () => {
